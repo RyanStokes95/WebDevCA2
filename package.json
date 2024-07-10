@@ -1,0 +1,22 @@
+{
+  "name": "webdevca2",
+  "version": "1.0.0",
+  "description": "Web Apllication Development CA2 - Final Project 2024",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanStokes95/WebDevCA2.git"
+  },
+  "author": "Ryan Stokes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyanStokes95/WebDevCA2/issues"
+  },
+  "homepage": "https://github.com/RyanStokes95/WebDevCA2#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
