@@ -1,0 +1,39 @@
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    background-image: url(images/joshua-bartell-6vvIBTvL90A-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+#landingHeader, #landingMain{
+    display: flex;
+    color: rgb(255, 255, 255);
+}
+
+#landingHeader{
+    flex-direction: row;
+    align-items: center;
+}
+
+#landingNav li {
+    display: inline;
+    padding: 10px;
+}
+
+#landingNav a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+#landingMain{
+    flex-direction: column;
+}
+
