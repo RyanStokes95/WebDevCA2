@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-html, body{
+html{
     background-image: url(images/joshua-bartell-6vvIBTvL90A-unsplash.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -13,6 +13,12 @@ html, body{
     margin: 0;
 }
 
+body{
+    width: 97vw;
+    height: 95vh;
+    padding: 10px;
+}
+
 #landingHeader, #landingMain{
     display: flex;
     color: rgb(255, 255, 255);
@@ -21,6 +27,7 @@ html, body{
 #landingHeader{
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 #landingNav li {
@@ -35,5 +42,23 @@ html, body{
 
 #landingMain{
     flex-direction: column;
+    justify-content: space-around;
+    height: 80vh;
+    padding: 10px;
+}
+
+#landingMain form{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+#landingMain label, #landingMain input{
+    margin: 10px;
+}
+
+#landingMain input{
+    text-align: center;
 }
 
