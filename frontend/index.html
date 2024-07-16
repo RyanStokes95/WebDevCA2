@@ -4,33 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+    </style>
     <title>Document</title>
 </head>
 <body>
     <header id="landingHeader">
         <h1 id="landingHeading">My Kitchen Pal</h1>
-        <nav id="landingNav">
-            <ul>
-                <li><a href="">About Us</a></li>
-                <li><a href="">Create Recipe</a></li>
-                <li><a href="">My Recipes</a></li>
-                <li><a href="">Catalog</a></li>
-                <li><a href="">Contact Us</a></li>
-                <li><a href="">FAQ</a></li>
-            </ul>
-        </nav>
     </header>
+    
     <main id="landingMain">
-        <h2 id="landingSubHeading">Your Online Cookbook & More</h2>
-        <p id="landingDescription">description here</p>
-        <form action="../user.js" id="POST">
-            <label for="userNameInput" id="userNameLabel">Username:</label>
+        <h2 id="landingSubHeading">Your Online Cookbook & <b id="more">More</b></h2>
+        <p id="landingDescription">Discover a treasure trove of culinary delights at 
+            our recipe storage site, featuring an extensive catalog
+             of cookbooks from around the world. Easily browse, save,
+              and organize your favorite recipes, and explore new cuisines
+               with our comprehensive collection. Perfect for home cooks 
+               and food enthusiasts alike!</p>
+        <form action="../user.js" id="signIn">
+            <label for="userNameInput" id="userNameLabel">Username</label>
             <input type="text" id="userNameInput" name="userNameInput">
             <br>
             <label for="passwordInput" id="passwordInputLabel">Password</label>
             <input type="text" id="passwordInput" name="passwordInput">
             <br>
-            <button type="submit" id="signIn">Sign In</button>
+            <div id="landingButtons">
+                <button type="submit" id="signIn">Sign In</button>
+                <a href="register.html"><button  id="register">Register</button></a>
+            </div>
         </form>
     </main>
 </body>
