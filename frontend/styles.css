@@ -151,6 +151,31 @@ body{
     background-repeat: no-repeat;
 }
 
+#registerMain{
+    display: flex;
+    flex-direction: row;
+}
+
+#sectionWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
+    border: 1px solid rgb(0, 0, 0);
+}
+
+#registerSection{
+    font-size: 2.7em;
+    width: 60%;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.662);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
 #registerForm{
     margin-left: 30px;
     padding: 5px;
@@ -160,14 +185,16 @@ body{
     background-color: rgba(255, 255, 255, 0.475);
     background-size: cover;
     border: 1px solid rgb(0, 0, 0);
+    width: 50vw;
 }
 
 .normalInput{
-    width: 30vw;
+    width: 20vw;
 }
 
 .longInput{
-    width: 70vw;
+    width: 30vw;
+    margin-right: 10px;
 }
 
 .longInput, .normalInput{
