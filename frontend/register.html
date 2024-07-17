@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/d8fa2073a1.js" crossorigin="anonymous"></script>
     <title>Register</title>
 </head>
-<body>
-    
+<body id="registerBody">
+    <header id="registerHeader">
+        <h1 id="landingHeading">My Kitchen Pal</h1>
+        <a href="index.html"><i class="fa-solid fa-house" id="home"></i></a>
+    </header>
+    <form id="registerForm">
+        <label for="username">Username*</label>
+        <input type="text" id="username" class="normalInput">
+
+        <label for="password">Password*</label>
+        <input type="text" id="password" class="normalInput">
+
+        <label for="firstName">First Name*</label>
+        <input type="text" id="firstName" class="normalInput">
+
+        <label for="secondName">Second Name*</label>
+        <input type="text" id="secondName" class="normalInput">
+
+        <label for="age">Age* (1 - 100)</label>
+        <input type="number" max="100" min="1" id="age" class="normalInput">
+
+        <label for="email">Email*</label>
+        <input type="text" id="email" class="normalInput">
+
+        <label for="addressOne">Street*</label>
+        <input type="text" id="addressOne" class="longInput">
+
+        <label for="town">Town*</label>
+        <input type="text" id="town" class="normalInput">
+
+        <label for="city">City*</label>
+        <input type="text" id="city" class="normalInput">
+
+        <label for="country">Country*</label>
+        <input type="text" id="country" class="normalInput">
+
+        <button id="register2">Register</button>
+    </form>
 </body>
 </html>

@@ -4,16 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-    </style>
-    <title>Document</title>
+    <title>My Kitchen Pal - Homepage</title>
 </head>
-<body>
+<body id="landingBody">
     <header id="landingHeader">
         <h1 id="landingHeading">My Kitchen Pal</h1>
     </header>
-    
     <main id="landingMain">
         <h2 id="landingSubHeading">Your Online Cookbook & <b id="more">More</b></h2>
         <p id="landingDescription">Discover a treasure trove of culinary delights at 
@@ -22,7 +18,7 @@
               and organize your favorite recipes, and explore new cuisines
                with our comprehensive collection. Perfect for home cooks 
                and food enthusiasts alike!</p>
-        <form action="../user.js" id="signIn">
+        <form id="signIn">
             <label for="userNameInput" id="userNameLabel">Username</label>
             <input type="text" id="userNameInput" name="userNameInput">
             <br>
@@ -31,7 +27,7 @@
             <br>
             <div id="landingButtons">
                 <button type="submit" id="signIn">Sign In</button>
-                <a href="register.html"><button  id="register">Register</button></a>
+                <a href="register.html"><button type="button" id="register">Register</button></a>
             </div>
         </form>
     </main>

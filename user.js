@@ -29,17 +29,11 @@ const userSchema = new mongoose.Schema({
         unique: true,
         lowercase: true
     },
-    mobile: {
-        type: String,
-        required: true,
-        unique: true
-    },
     address: {
-        adressLineOne: {
+        street: {
             type: String,
             required: true
         },
-        addressLineTwo: String,
         town: {
             type: String,
             required: true
@@ -51,11 +45,7 @@ const userSchema = new mongoose.Schema({
         country: {
             type: String,
             required: true
-        },
-        postcode: {
-            type: String,
-            required: true
-        },
+        }
     }
 });
 

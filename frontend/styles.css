@@ -1,14 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 *{
     box-sizing: border-box;
     font-family: "Outfit", sans-serif;
 }
 
 html{
-    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: rgba(255, 255, 255, 0.1);
-    background-blend-mode: soft-light;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -24,13 +21,21 @@ body{
     flex-direction: column;
 }
 
-#landingHeader, #landingNav, #landingMain{
+#landingBody{
+    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.1);
+    background-blend-mode: soft-light;
+}
+
+#landingHeader, #landingNav, #landingMain, #registerHeader{
     display: flex;
     flex-direction: column;
     margin-left: 40px;
 }
 
-#landingHeader{
+#landingHeader, #registerHeader{
     height: 10vh;
 }
 
@@ -121,3 +126,69 @@ body{
     color: rgb(255, 255, 255);
 }
 
+#registerHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#home{
+    text-decoration: none;
+    color:rgb(0, 0, 0);
+    margin-right: 3px;
+    font-size: 30px;
+}
+
+#home:hover{
+    color:rgb(112, 205, 146);
+}
+
+#registerBody{
+    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash2.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+#registerForm{
+    margin-left: 30px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.475);
+    background-size: cover;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.normalInput{
+    width: 30vw;
+}
+
+.longInput{
+    width: 70vw;
+}
+
+.longInput, .normalInput{
+    height: 30px;
+    font-size: 18px;
+}
+
+#register2{
+    width: 150px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: rgb(112, 205, 146);
+    font-size: 17px;
+}
+
+#register2:hover{
+    background-color: rgb(84, 153, 109);
+    color: rgb(255, 255, 255);
+}
+
+#registerForm label{
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
