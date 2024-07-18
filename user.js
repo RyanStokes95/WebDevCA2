@@ -29,24 +29,23 @@ const userSchema = new mongoose.Schema({
         unique: true,
         lowercase: true
     },
-    address: {
-        street: {
-            type: String,
-            required: true
-        },
-        town: {
-            type: String,
-            required: true
-        },
-        city: {
-            type: String,
-            required: true
-        },
-        country: {
-            type: String,
-            required: true
-        }
+    street: {
+        type: String,
+        required: true
+    },
+    town: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
     }
 });
+        
 
 module.exports = mongoose.model("Users", userSchema);
