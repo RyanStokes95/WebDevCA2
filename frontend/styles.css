@@ -29,7 +29,7 @@ body{
     background-blend-mode: soft-light;
 }
 
-#landingHeader, #landingNav, #landingMain, #registerHeader{
+#landingHeader, #landingMain, #registerHeader, #userNav{
     display: flex;
     flex-direction: column;
     margin-left: 40px;
@@ -39,19 +39,19 @@ body{
     height: 10vh;
 }
 
-#landingNav{
+#userNav{
     height: 10vh;
     justify-content: center;
     margin-left: 0;
 }
 
-#landingNav li, #landingNav a{
+#userNav li, #userNav a{
     display: inline;
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
 
-#landingNav a{
+#userNav a{
     padding: 3px;
     background-color: rgb(112, 205, 146);
     border-width: 2px;
@@ -59,7 +59,7 @@ body{
     border-color: rgb(0, 0, 0);
 }
 
-#landingNav a:hover{
+#userNav a:hover{
     background-color: rgb(84, 153, 109);
     color: rgb(255, 255, 255);
 }
@@ -143,6 +143,8 @@ body{
 
 #home:hover{
     color:rgb(112, 205, 146);
+    stroke: black;
+    stroke-width: 4px;
 }
 
 #registerBody{
@@ -180,7 +182,7 @@ body{
 
 
 #registerForm{
-    padding: 5px;
+    padding: 5px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
