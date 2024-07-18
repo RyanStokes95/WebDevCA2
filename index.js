@@ -1,17 +1,17 @@
 require('dotenv').config();
-const bodyParser = require('bodyParser');
+const express = require('express');
+const bodyParser = require('body-parser');
 const cors =  require('cors');
 
 const connectDB = require('./dbconfig');
 connectDB();
 
-const User = require('./user')
+const User = require('./User')
 
+const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const express = require('express');
-const app = express();
 const port = process.env.PORT;
 
 const server = app.listen(port, () => {
@@ -49,7 +49,7 @@ app.post('/user-register', async (req, res) => {
         });
 
         try {
-            await formData.save();
+            formData.save();
             res.status(200).send("User Submitted Successfully");
         } catch (error) {
             res.status(500).send("Failed to Add User");
