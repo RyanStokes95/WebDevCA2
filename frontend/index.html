@@ -18,18 +18,17 @@
               and organize your favorite recipes, and explore new cuisines
                with our comprehensive collection. Perfect for home cooks 
                and food enthusiasts alike!</p>
-        <form id="signIn">
-            <label for="userNameInput" id="userNameLabel">Username</label>
-            <input type="text" id="userNameInput" name="userNameInput">
-            <br>
-            <label for="passwordInput" id="passwordInputLabel">Password</label>
-            <input type="text" id="passwordInput" name="passwordInput">
-            <br>
-            <div id="landingButtons">
-                <button type="submit" id="signIn">Sign In</button>
-                <a href="register.html"><button type="button" id="register">Register</button></a>
-            </div>
+        <form id="signInForm" method="POST">
+            <label for="username" id="userNameLabel">Username</label>
+            <input type="text" id="username" name="username">
+
+            <label for="password" id="passwordInputLabel">Password</label>
+            <input type="password" id="password" name="password">
+            
+            <button id="signIn">Sign In</button>
         </form>
+        <a href="register.html"><button type="button" id="register">Register</button></a>
+        <script src="script.js" async></script>
     </main>
 </body>
 </html>

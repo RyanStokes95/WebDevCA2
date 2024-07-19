@@ -93,23 +93,23 @@ body{
     justify-content: space-between;
 }
 
-#signIn{
+#signInForm{
     display: flex;
     flex-direction: column;
     width: 300px;
 }
 
-#signIn label{
+#signInForm label{
     font-size: 20px;
     margin-bottom: 3px;
 }
 
-#signIn input{
+#signInForm input{
     height: 40px;
     font-size: 18px;
 }
 
-#signIn button{
+#signInForm button{
     width: 100px;
     height: 40px;
     align-items: center;

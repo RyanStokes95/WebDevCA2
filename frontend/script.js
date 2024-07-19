@@ -4,40 +4,69 @@ Ryan Stokes
 18/07/24
 */
 
-document.getElementById('registerForm').addEventListener('submit', async (event) => {
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('signInForm').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission behavior
 
-    //Registration Code
-    
-    //Prevents default behaviour on form submit, such as an AJAX request
-    event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData.entries());
 
-    //Assigning the forms data to a variable
-    const formData = new FormData(event.target);
-    //Creates a Javascript object from the form data above (Does not parse to JSON here)
-    const data = Object.fromEntries(formData.entries());
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
 
-    //Fetch API - sends a request to send data (POST) to the server
-    const response = await fetch('http://localhost:3000/user-register', {
-        method: 'POST',
-        headers: {
-            //Informs the server the format of the data, in this case JSON
-            'Content-Type': 'application/json',
-        },
-        //The data variable from above is pased to JSON beofre sending
-        body: JSON.stringify(data),
+            const result = await response.json();
+
+            if (result.success) {
+                // Login successful, redirect to the dashboard or another page
+                window.location.replace("userDashboard.html");
+            } else {
+                alert('Login failed: ' + result.message);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            alert('An error occurred while logging in.');
+        }
     });
-
-    //Error handling
-    if (response.ok) {
-        alert('Form submitted successfully!');
-        //Sends user back to landing page if successful, allowing them to sign in
-        window.location.replace("index.html");
-    } else {
-        alert('Failed to submit form.');
-    }
 });
 
-//Login Code
+// Add event listener to the registration form
+document.getElementById('registerForm').addEventListener('submit', async (event) => {
+    // Prevent default form submission behavior
+    event.preventDefault();
 
+    // Assign form data to a variable
+    const formData = new FormData(event.target);
+    // Create a JavaScript object from the form data
+    const data = Object.fromEntries(formData.entries());
 
+    try {
+        // Send a POST request to the server with the form data
+        const response = await fetch('http://localhost:3000/user-register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
 
+        // Check if the request was successful
+        if (response.ok) {
+            alert('Form submitted successfully!');
+            // Redirect to the landing page
+            window.location.replace("index.html");
+        } else {
+            // Handle unsuccessful form submission
+            alert('Failed to submit form.');
+        }
+    } catch (error) {
+        // Handle any errors that occur during the fetch request
+        console.error('Error:', error);
+        alert('An error occurred while submitting the form.');
+    }
+});

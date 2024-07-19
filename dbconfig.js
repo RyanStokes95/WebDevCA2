@@ -6,20 +6,31 @@ Ryan Stokes
 
 require('dotenv').config();
 const mongoose = require('mongoose');
+const MongoDBStore = require('connect-mongodb-session')(require('express-session'));
 
-//Mongo DB connection string, hidden in .env variable
+// MongoDB connection string, hidden in .env variable
 const uri = process.env.MONGODB_CONNECTION_STRING;
 
-//Connection to Mongo DB utilising Mongoose
+// Connect to MongoDB using Mongoose
 const connectDB = async () => {
-  //Error handling for DB connection
-    try {
-      await mongoose.connect(uri);
-      console.log("Successfully connected to Mongoose");
-    } catch (err) {
-      console.error("Failed to connect to Mongoose", err);
-    }
-  };
+  try {
+    await mongoose.connect(uri);
+    console.log("Successfully connected to MongoDB");
+  } catch (err) {
+    console.error("Failed to connect to MongoDB", err);
+  }
+};
 
-//Module export to be used in server.js
-module.exports = connectDB;
+// Configure MongoDBStore for sessions
+const store = new MongoDBStore({
+  uri: uri,
+  collection: 'sessions',
+});
+
+// Handle MongoDBStore errors
+store.on('error', function(error) {
+  console.error('Session Store Error:', error);
+});
+
+// Export connection function and session store
+module.exports = { connectDB, store };
