@@ -1,9 +1,10 @@
+/*
+script.js
+Ryan Stokes
+18/07/24
+*/
+
 document.getElementById('registerForm').addEventListener('submit', async (event) => {
-    /*
-    script.js
-    Ryan Stokes
-    18/07/24
-    */
 
     //Registration Code
     
