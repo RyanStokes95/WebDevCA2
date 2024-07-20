@@ -7,7 +7,7 @@
 
 html{
     width: 100vw;
-    height: 100vh;
+    height: 97vh;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -29,7 +29,7 @@ body{
     background-blend-mode: soft-light;
 }
 
-#landingHeader, #landingMain, #registerHeader, #userNav{
+#landingHeader, #landingMain, #registerHeader{
     display: flex;
     flex-direction: column;
     margin-left: 40px;
@@ -37,31 +37,6 @@ body{
 
 #landingHeader, #registerHeader{
     height: 10vh;
-}
-
-#userNav{
-    height: 10vh;
-    justify-content: center;
-    margin-left: 0;
-}
-
-#userNav li, #userNav a{
-    display: inline;
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-}
-
-#userNav a{
-    padding: 3px;
-    background-color: rgb(112, 205, 146);
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(0, 0, 0);
-}
-
-#userNav a:hover{
-    background-color: rgb(84, 153, 109);
-    color: rgb(255, 255, 255);
 }
 
 #landingMain{
@@ -223,3 +198,76 @@ body{
     margin-top: 10px;
     margin-bottom: 3px;
 }
+
+#userMainWrapper{
+    display: flex;
+    flex-direction: column;
+    width: 89vw;
+    height: 100vh;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#userNav{
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+}
+
+#userNav ul{
+    padding: 0;
+}
+
+#userNav li, #userNav a{
+    margin-right: 10px;
+    display: inline;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+#userNav a{
+    padding: 3px;
+    background-color: rgb(112, 205, 146);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+
+#userNav a:hover{
+    background-color: rgb(84, 153, 109);
+    color: rgb(255, 255, 255);
+}
+
+#userWelcomeWrapper{
+    height: 10%;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+#createRecipeWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 15%;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+#myRecipesWrapper{
+    height: 65%;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+#createRecipeButton{
+    width: 170px;
+    height: 50px;
+    padding: 3px;
+    background-color: rgb(112, 205, 146);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+
+#createRecipeButton:hover{
+    background-color: rgb(84, 153, 109);
+    color: rgb(255, 255, 255);
+}
+

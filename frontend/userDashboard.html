@@ -5,22 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/d8fa2073a1.js" crossorigin="anonymous"></script>
-    <script src="script.js" async></script>
     <title>Document</title>
 </head>
 <body id="registerBody">
     <header id="registerHeader">
         <h1 id="landingHeading">My Kitchen Pal</h1>
-        <a href="index.html"><i class="fa-solid fa-house" id="home"></i></a>
+        <i class="fa-solid fa-user"></i>
+        <a href="index.html"><i class="fa-solid fa-right-from-bracket"></i></i></a>
     </header>
-    <nav id="userNav">
-        <ul>
-            <li><a href="">About Us</a></li>
-            <li><a href="">Create Recipe</a></li>
-            <li><a href="">My Recipes</a></li>
-            <li><a href="">Catalog</a></li>
-            <li><a href="">Contact Us</a></li>
-        </ul>
-    </nav>
+    <div id="userMainWrapper">
+        <nav id="userNav">
+            <ul>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Catalog</a></li>
+                <li><a href="">Contact Us</a></li>
+            </ul>
+        </nav>
+        <section id="userWelcomeWrapper">
+            <h2 id="userWelcome"></h2>
+        </section>
+        <section id="createRecipeWrapper">
+            <div id="createRecipe">
+                <button id="createRecipeButton">Create Recipe</button>
+            </div>
+        </section>
+        <section id="myRecipesWrapper">
+            <div id="myRecipes"></div>
+        </section>
+    </div>
 </body>
+<script src="script.js" async>
+</script>
 </html>

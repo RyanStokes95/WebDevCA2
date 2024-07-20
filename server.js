@@ -5,12 +5,14 @@ const bodyParser = require('body-parser');
 const cors =  require('cors');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const path = require('path');
 const User = require('./User')
 const port = process.env.PORT;
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
@@ -91,7 +93,9 @@ app.post('/login', async (req, res) => {
         // Set user session
         req.session.user = {
             id: user._id,
-            username: user.username
+            username: user.username,
+            name: user.firstName,
+            name2: user.secondName
         };
 
         res.json({ success: true });
@@ -101,14 +105,15 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Protected route
-app.get('/user-dash', (req, res) => {
+
+//Return user session data as JSON to be used in frontend
+app.get('/api/session', (req, res) => {
     if (req.session.user) {
-        res.json({ success: true, message: 'User is authenticated' });
+      res.json({ user: req.session.user });
     } else {
-        res.status(403).send('Unauthorized');
+      res.status(401).json({ error: 'Unauthorized' });
     }
-});
+  });
 
 // Logout endpoint
 app.post('/logout', (req, res) => {
@@ -118,4 +123,13 @@ app.post('/logout', (req, res) => {
         }
         res.json({ success: true });
     });
+});
+
+// Protected route
+app.get('/user-dash', (req, res) => {
+    if (req.session.user) {
+        res.json({ success: true, message: 'User is authenticated' });
+    } else {
+        res.status(403).send('Unauthorized');
+    }
 });
