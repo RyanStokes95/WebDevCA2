@@ -4,22 +4,14 @@ Ryan Stokes
 18/07/24
 */
 
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/session')
-      .then(response => {
-          return response.json();
-      })
-      .then(data => {
-        if (data && data.user) {
-          document.getElementById('userWelcome').innerText = `Welcome, ${data.user.firstName}!`;
-        }
-      })
-      .catch(error => console.error('Error fetching session data:', error));
-
-      console.log(data.user.firstName)
+document.addEventListener('DOMContentLoaded', () => {
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById("userWelcome").innerHTML = "Welcome" + username + "!";
+    }
 });
 
-
+let username = "";
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the signInForm element exists before adding event listener
     const signInForm = document.getElementById('signInForm');
@@ -29,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
+            username = data.username;
 
             try {
                 const response = await fetch('http://localhost:3000/login', {
@@ -44,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (result.success) {
                     // Login successful, redirect to the dashboard or another page
                     window.location.replace("userDashboard.html");
+                    localStorage.setItem('username', username);
                 } else {
                     alert('Login failed: ' + result.message);
                 }
