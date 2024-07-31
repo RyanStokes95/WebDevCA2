@@ -24,10 +24,11 @@
 
             <label for="password" id="passwordInputLabel">Password</label>
             <input type="password" id="password" name="password">
-            
-            <button id="signIn">Sign In</button>
+            <div id="signInButtons">
+                <button id="signIn">Sign In</button>
+                <button type="button" id="register" onclick="window.location.href='register.html'">Register</button>
+            </div>
         </form>
-        <a href="register.html"><button type="button" id="register">Register</button></a>
         <script src="script.js" async></script>
     </main>
 </body>

@@ -23,10 +23,34 @@ body{
 
 #landingBody{
     background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash.jpg);
-    background-size: cover;
+    background-size:cover;
     background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.1);
     background-blend-mode: soft-light;
+}
+
+@media (max-width: 1200px) {
+    #landingBody {
+        background-size: 200%;
+    }
+}
+
+@media (max-width: 900px) {
+    #landingBody {
+        background-size: 220%;
+    }
+}
+
+@media (max-width: 700px) {
+    #landingBody {
+        background-size: 270%;
+    }
+}
+
+@media (max-width: 500px) {
+    #landingBody {
+        background-size: 300%;
+    }
 }
 
 #landingHeader, #landingMain, #registerHeader{
@@ -42,7 +66,7 @@ body{
 #landingMain{
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    height: 100%;
 }
 
 #landingSubHeading{
@@ -58,7 +82,7 @@ body{
     font-size: 160%;
 }
 
-#bold{
+.bold{
     color: rgb(84, 153, 109);
 }
 
@@ -69,6 +93,7 @@ body{
 }
 
 #signInForm{
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -92,8 +117,16 @@ body{
     font-size: 20px;
 }
 
+#signInButtons{
+    margin-top: 20px;
+}
+
 #register{
     background-color: rgb(112, 205, 146);
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    margin-left: 30px;
 }
 
 #register:hover{
