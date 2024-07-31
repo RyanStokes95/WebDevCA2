@@ -247,8 +247,8 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 15%;
     border: 1px solid rgb(0, 0, 0);
+    padding: 5px;
 }
 
 #myRecipesWrapper{
@@ -269,5 +269,20 @@ body{
 #createRecipeButton:hover{
     background-color: rgb(84, 153, 109);
     color: rgb(255, 255, 255);
+}
+
+#createRecipeForm{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+#createRecipeForm button{
+    width: 17%;
+    margin-top: 5px;
+}
+
+#createRecipeForm label{
+    margin-top: 15px;
 }
 

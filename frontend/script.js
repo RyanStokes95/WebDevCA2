@@ -1,17 +1,18 @@
 /*
 script.js
 Ryan Stokes
-18/07/24
+Created - 18/07/24
+Last Modified - 31/07/24
 */
 
+//Local Session Storage
 document.addEventListener('DOMContentLoaded', () => {
     const username = localStorage.getItem('username');
     if (username) {
-        document.getElementById("userWelcome").innerHTML = "Welcome" + username + "!";
+        document.getElementById("userWelcome").innerHTML = "Welcome " + username + "!";
     }
 });
 
-let username = "";
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the signInForm element exists before adding event listener
     const signInForm = document.getElementById('signInForm');
@@ -78,4 +79,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+   document.getElementById("addIngredientButton").addEventListener('click', () => {
+
+        let ingredient = document.getElementById("ingredients").value
+        let ingredientElement = document.createElement("div");
+        ingredientElement.textContent = ingredient
+
+        document.getElementById("ingredientsWrapper").appendChild(ingredientElement);
+
+        document.getElementById("ingredients").value = "";
+        console.log("here")
+   })
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const addStepButton = document.getElementById("addStepButton");
+    const stepsWrapper = document.getElementById("stepsWrapper");
+    let i = 1;
+    addStepButton.addEventListener('click', () => {
+        const step = document.getElementById("steps").value;
+
+        if (step.trim()) {
+            const stepElement = document.createElement("div");
+            stepElement.textContent = i + " ." + step;
+            stepsWrapper.appendChild(stepElement);
+            document.getElementById("steps").value = "";
+            i = i + 1;
+        } else {
+            alert("Please enter a step.");
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    
 });

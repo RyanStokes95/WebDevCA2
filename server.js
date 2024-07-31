@@ -1,11 +1,17 @@
+/*
+server.js
+Ryan Stokes
+Created - 18/07/24
+Last Modified - 31/07/24
+*/
+
 require('dotenv').config();
 const { connectDB } = require('./dbconfig');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors =  require('cors');
 const bcrypt = require('bcrypt');
-const path = require('path');
-const User = require('./User')
+const User = require('./schemas/User')
 const port = process.env.PORT;
 const app = express();
 

@@ -1,7 +1,8 @@
 /*
 dbconfig.js
 Ryan Stokes
-19/07/24
+Created - 18/07/24
+Last Modified - 31/07/24
 */
 
 require('dotenv').config();
