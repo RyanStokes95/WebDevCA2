@@ -2,7 +2,7 @@
 script.js
 Ryan Stokes
 Created - 18/07/24
-Last Modified - 31/07/24
+Last Modified - 01/08/24
 */
 
 //Local Session Storage
@@ -174,6 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 steps: steps,
                 username: username
             };
+
+            console.log(recipeData);
 
             try {
                 const response = await fetch('http://localhost:3000/addRecipe', {

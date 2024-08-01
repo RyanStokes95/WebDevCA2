@@ -128,11 +128,17 @@ app.post('/addRecipe', async (req, res) => {
             ingredients,
             steps,
             username
-            
+
         })
         await formData.save();
         res.status(200).send("Recipe Submitted Successfully");
      } catch (error) {
         res.status(500).send("Failed to add recipe")
      }
+})
+
+app.get('/getRecipe/:username', async (req, res) => {
+    const { username } = req.params
+    const recipes = await Recipe.find({ username: username })
+    res.status(200).json(recipes);
 })
