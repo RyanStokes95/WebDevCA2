@@ -81,18 +81,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-   
-});
-
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-});
 
-document.addEventListener('DOMContentLoaded', () => {
+    const logoutButton = document.getElementById("logout");
+    logoutButton.addEventListener('click', () => {
+        localStorage.clear;
+        window.location.replace("index.html");
+    })
+
     const createRecipeButton = document.getElementById("createRecipeButton");
     const createRecipeWrapper = document.getElementById("createRecipeFormWrapper");
+
     createRecipeButton.addEventListener('click', () => {
         createRecipeWrapper.innerHTML = `
             <div id="createRecipeForm">
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="text" id="title" name="title">
         
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description">
+                <textarea type="text" id="description" name="description" rows="4" cols="50"></textarea>
         
                 <label for="serves">Serves</label>
                 <input type="number" id="serves" name="serves">
@@ -122,13 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const addStepButton = document.getElementById("addStepButton");
         const stepsWrapper = document.getElementById("stepsWrapper");
         let i = 1;
+
         addStepButton.addEventListener('click', () => {
             const step = document.getElementById("steps").value;
 
             if (step.trim()) {
                 stepsWrapper.style.visibility = "visible";
                 const stepElement = document.createElement("div");
-                stepElement.textContent = i + " ." + step;
+                stepElement.textContent = i + ". " + step;
                 stepsWrapper.appendChild(stepElement);
                 document.getElementById("steps").value = "";
                 i = i + 1;
@@ -184,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(recipeData),
+                    
                 });
         
                 if (response.ok) {
@@ -194,6 +196,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error('Error:', error);
             }
+
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.value = "";
+            });
+
         });
     });//dont go beyond
 });

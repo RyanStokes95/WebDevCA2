@@ -232,10 +232,24 @@ body{
     margin-bottom: 3px;
 }
 
+#logout{
+    color: rgb(112, 205, 146);
+    border: 1.5px solid rgb(0, 0, 0);
+    border-radius: 35%;
+    padding: 3px;
+    font-size: 25px;
+    margin-right: 20px;
+    justify-self:center;
+}
+
+#logout:hover{
+    background-color: rgba(255, 255, 255, 0.916);
+}
+
 #userMainWrapper{
     display: flex;
     flex-direction: column;
-    width: 89vw;
+    width: 92vw;
     height: 100vh;
     margin-left: 40px;
     margin-right: 40px;
@@ -274,6 +288,15 @@ body{
 #userWelcomeWrapper{
     height: 10%;
     border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#userWelcome{
+    font-size: 30px;
+    margin-left: 3px;
+    font-weight: 600;
 }
 
 #createRecipeWrapper{
@@ -289,6 +312,10 @@ body{
     border: 1px solid rgb(0, 0, 0);
 }
 
+#myRecipesHeading{
+    margin-left: 3px;
+}
+
 #createRecipeButton{
     width: 170px;
     height: 50px;
@@ -299,7 +326,7 @@ body{
     border-color: rgb(0, 0, 0);
 }
 
-#createRecipeButton:hover{
+#createRecipeButton:hover, #addRecipe:hover{
     background-color: rgb(84, 153, 109);
     color: rgb(255, 255, 255);
 }
@@ -307,15 +334,12 @@ body{
 #createRecipeForm{
     display: flex;
     flex-direction: column;
-    width: 87vw;
-}
-
-#createRecipeForm button{
-    margin-top: 5px;
+    width: 91.5vw;
 }
 
 #createRecipeForm label{
     margin-top: 15px;
+    font-size: 18px;
 }
 
 #stepsWrapper, #ingredientsWrapper {
@@ -326,14 +350,60 @@ body{
     border: 1px solid rgb(0, 0, 0);
 }
 
-#addRecipe{
-    align-self: flex-end;
-    width: 100px;
+#title, #description, #serves, #ingredients, #steps{
     height: 30px;
+    font-size: 18px;
+}
+
+#title{
+    width: 40%
+}
+
+#description{
+    height:90px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    resize: none;
+}
+
+#serves{
+    width: 8%;
+}
+
+#ingredients{
+    width: 30%;
+}
+
+#steps{
+    width: 70%;
+}
+
+#addIngredientButton, #addStepButton{
     padding: 3px;
     background-color: rgb(112, 205, 146);
     border-width: 2px;
     border-style: solid;
     border-color: rgb(0, 0, 0);
+    margin-top: 5px;
+    width: 100px;
+}
+
+#addIngredientButton:hover, #addStepButton:hover{
+    background-color: rgb(84, 153, 109);
+    color: rgb(255, 255, 255);
+}
+
+#addRecipe{
+    align-self: flex-end;
+    padding: 3px;
+    background-color: rgb(112, 205, 146);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    margin-top: 20px;
+    width: 150px;
+    height: 40px;
 }
 
