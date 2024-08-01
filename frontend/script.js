@@ -5,9 +5,10 @@ Created - 18/07/24
 Last Modified - 01/08/24
 */
 
-//Local Session Storage
+//Local Session Storage - Username retrieval for DB queries
 document.addEventListener('DOMContentLoaded', () => {
     const username = localStorage.getItem('username');
+    //Displays username and welcome message on dashboard
     if (username) {
         document.getElementById("userWelcome").innerHTML = "Welcome " + username + "!";
     }
@@ -18,12 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const signInForm = document.getElementById('signInForm');
     if (signInForm) {
         signInForm.addEventListener('submit', async (event) => {
+
+            //Prevent default behaviour as data is posted
             event.preventDefault();
 
+            //Retrieves data from form in key value pairs
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
-            username = data.username;
 
+            //username to be added to local storage
+            let username = data.username;
+
+            //Data is sent via login route
             try {
                 const response = await fetch('http://localhost:3000/login', {
                     method: 'POST',
@@ -33,15 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(data),
                 });
 
+                //result variable assigned the JSON response
                 const result = await response.json();
 
+                //If result is success the user is logged in
                 if (result.success) {
-                    // Login successful, redirect to the dashboard or another page
+                    //Upon login user dash is opened and username is sent to local storage
                     window.location.replace("userDashboard.html");
                     localStorage.setItem('username', username);
                 } else {
+                    //Alert to user if login fails
                     alert('Login failed: ' + result.message);
                 }
+                //Error Handling
             } catch (error) {
                 console.error('Error during login:', error);
                 alert('An error occurred while logging in.');
@@ -53,11 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
         registerForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent default form submission behavior
+            //Prevent default behaviour as data is posted
+            event.preventDefault();
 
+            //Retrieves data from form in key value pairs
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
 
+            //Data is sent via user-register route
             try {
                 const response = await fetch('http://localhost:3000/user-register', {
                     method: 'POST',
@@ -66,15 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     body: JSON.stringify(data),
                 });
-
+                //If user added they are given a message and re-directed to the landing page
                 if (response.ok) {
                     alert('Form submitted successfully!');
                     window.location.replace("index.html");
                 } else {
                     alert('Failed to submit form.');
                 }
+                //Error Handling
             } catch (error) {
                 console.error('Error:', error);
+                //Error alert for user
                 alert('An error occurred while submitting the form.');
             }
         });
