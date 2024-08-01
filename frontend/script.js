@@ -82,38 +82,118 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-   document.getElementById("addIngredientButton").addEventListener('click', () => {
-
-        let ingredient = document.getElementById("ingredients").value
-        let ingredientElement = document.createElement("div");
-        ingredientElement.textContent = ingredient
-
-        document.getElementById("ingredientsWrapper").appendChild(ingredientElement);
-
-        document.getElementById("ingredients").value = "";
-        console.log("here")
-   })
+   
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const addStepButton = document.getElementById("addStepButton");
-    const stepsWrapper = document.getElementById("stepsWrapper");
-    let i = 1;
-    addStepButton.addEventListener('click', () => {
-        const step = document.getElementById("steps").value;
-
-        if (step.trim()) {
-            const stepElement = document.createElement("div");
-            stepElement.textContent = i + " ." + step;
-            stepsWrapper.appendChild(stepElement);
-            document.getElementById("steps").value = "";
-            i = i + 1;
-        } else {
-            alert("Please enter a step.");
-        }
-    });
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createRecipeButton = document.getElementById("createRecipeButton");
+    const createRecipeWrapper = document.getElementById("createRecipeFormWrapper");
+    createRecipeButton.addEventListener('click', () => {
+        createRecipeWrapper.innerHTML = `
+            <div id="createRecipeForm">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+        
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description">
+        
+                <label for="serves">Serves</label>
+                <input type="number" id="serves" name="serves">
+        
+                <label for="ingredients">Ingredients</label>
+                <input type="text" id="ingredients" name="ingredients">
+                <button id="addIngredientButton">Add</button>
+                <div id="ingredientsWrapper"></div>
+        
+                <label for="steps">Steps</label>
+                <input type="text" id="steps" name="steps">
+                <button id="addStepButton">Add</button>
+                <div id="stepsWrapper"></div>
+        
+                <button id="addRecipe">Add Recipe</button>
+            </div>
+        `;
+        
+        const addStepButton = document.getElementById("addStepButton");
+        const stepsWrapper = document.getElementById("stepsWrapper");
+        let i = 1;
+        addStepButton.addEventListener('click', () => {
+            const step = document.getElementById("steps").value;
+
+            if (step.trim()) {
+                stepsWrapper.style.visibility = "visible";
+                const stepElement = document.createElement("div");
+                stepElement.textContent = i + " ." + step;
+                stepsWrapper.appendChild(stepElement);
+                document.getElementById("steps").value = "";
+                i = i + 1;
+            } else {
+                alert("Please enter a step.");
+            }
+
+        });
+
+        const addIngredientButton = document.getElementById("addIngredientButton");
+        const ingredientsWrapper = document.getElementById("ingredientsWrapper");
+    
+        addIngredientButton.addEventListener('click', () => {
+            const ingredient = document.getElementById("ingredients").value;
+    
+            if (ingredient.trim()) {
+                ingredientsWrapper.style.visibility = "visible";
+                const ingredientElement = document.createElement("div");
+                ingredientElement.textContent = ingredient;
+                ingredientsWrapper.appendChild(ingredientElement);
+                document.getElementById("ingredients").value = "";
+            } else {
+                alert("Please enter an ingredient.");
+            }
+        });
+        document.getElementById('addRecipe').addEventListener('click', async () => {
+            //Retrieving data from recipe div
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const serves = document.getElementById('serves').value;
+            const ingredientsWrapper = document.getElementById('ingredientsWrapper');
+            const ingredients = Array.from(ingredientsWrapper.children).map(child => child.textContent);
+            const stepsWrapper = document.getElementById('stepsWrapper');
+            const steps = Array.from(stepsWrapper.children).map(child => child.textContent);
+        
+            //JSON object cretaed from data
+            const recipeData = {
+                title: title,
+                description: description,
+                serves: serves,
+                ingredients: ingredients,
+                steps: steps
+            };
+
+            console.log(recipeData);
+        
+            /*try {
+                const response = await fetch('/api/recipes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(recipeData),
+                });
+        
+                if (response.ok) {
+                    console.log('Recipe added successfully!');
+                } else {
+                    console.error('Failed to add recipe.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }*/
+        });
+        
+
+    });//dont go beyond
 });

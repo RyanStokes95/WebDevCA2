@@ -307,15 +307,33 @@ body{
 #createRecipeForm{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 87vw;
 }
 
 #createRecipeForm button{
-    width: 17%;
     margin-top: 5px;
 }
 
 #createRecipeForm label{
     margin-top: 15px;
+}
+
+#stepsWrapper, #ingredientsWrapper {
+    visibility: hidden;
+    margin-top: 10px;
+    padding: 8px 5px;
+    background-color: rgba(255, 255, 255, 0.658);
+    border: 1px solid rgb(0, 0, 0);
+}
+
+#addRecipe{
+    align-self: flex-end;
+    width: 100px;
+    height: 30px;
+    padding: 3px;
+    background-color: rgb(112, 205, 146);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
 }
 
