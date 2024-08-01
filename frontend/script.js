@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const signInForm = document.getElementById('signInForm');
     if (signInForm) {
         signInForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent default form submission behavior
+            event.preventDefault();
 
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
@@ -163,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const ingredients = Array.from(ingredientsWrapper.children).map(child => child.textContent);
             const stepsWrapper = document.getElementById('stepsWrapper');
             const steps = Array.from(stepsWrapper.children).map(child => child.textContent);
+            const username = localStorage.getItem('username');
         
             //JSON object cretaed from data
             const recipeData = {
@@ -170,10 +171,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 description: description,
                 serves: serves,
                 ingredients: ingredients,
-                steps: steps
+                steps: steps,
+                username: username
             };
 
-            console.log(recipeData);
+            try {
+                const response = await fetch('http://localhost:3000/addRecipe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(recipeData),
+                });
+        
+                if (response.ok) {
+                    console.log('Recipe added successfully!');
+                } else {
+                    console.error('Failed to add recipe.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
         });
     });//dont go beyond
 });

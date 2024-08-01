@@ -2,7 +2,7 @@
 server.js
 Ryan Stokes
 Created - 18/07/24
-Last Modified - 31/07/24
+Last Modified - 01/08/24
 */
 
 //imports and dependencies
@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const cors =  require('cors');
 const bcrypt = require('bcrypt');
 const User = require('./schemas/User')
+const Recipe = require('./schemas/Recipe')
 const port = process.env.PORT;
 const app = express();
 
@@ -36,6 +37,7 @@ connectDB();
 app.post('/user-register', async (req, res) => {
     //Request Body - User Details
     const {
+
         username, 
         password, 
         firstName, 
@@ -45,7 +47,9 @@ app.post('/user-register', async (req, res) => {
         street, 
         town, 
         city, 
-        country} = req.body;
+        country
+
+    } = req.body;
 
         try {
             //BCrypt used to hash and salt password before DB insertion
@@ -54,6 +58,7 @@ app.post('/user-register', async (req, res) => {
             
             //Data used to create new user schema object
             const formData = new User({
+
                 username,
                 password: hashedPassword,
                 firstName,
@@ -64,6 +69,7 @@ app.post('/user-register', async (req, res) => {
                 town,
                 city,
                 country
+
             });
             
             //Success if data is stored in mongoDB
@@ -100,3 +106,33 @@ app.post('/login', async (req, res) => {
         res.status(500).send("Server Error");
     }
 });
+
+app.post('/addRecipe', async (req, res) => {
+    const { 
+
+        title,
+        description,
+        serves,
+        ingredients,
+        steps,
+        username
+
+     } = req.body;
+
+     try {
+        const formData = new Recipe ({
+
+            title,
+            description,
+            serves,
+            ingredients,
+            steps,
+            username
+            
+        })
+        await formData.save();
+        res.status(200).send("Recipe Submitted Successfully");
+     } catch (error) {
+        res.status(500).send("Failed to add recipe")
+     }
+})
