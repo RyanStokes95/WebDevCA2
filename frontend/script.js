@@ -174,26 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             console.log(recipeData);
-        
-            /*try {
-                const response = await fetch('/api/recipes', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(recipeData),
-                });
-        
-                if (response.ok) {
-                    console.log('Recipe added successfully!');
-                } else {
-                    console.error('Failed to add recipe.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }*/
         });
-        
-
     });//dont go beyond
 });
