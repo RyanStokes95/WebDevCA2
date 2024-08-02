@@ -115,25 +115,64 @@ document.addEventListener('DOMContentLoaded', () => {
                             'Content-Type': 'application/json',
                         },
                     });
-                    const recipes = await response.json();
-                    console.log(recipes)
+                    const recipes = await response.json()
+
+                    for (let i = 0; i < recipes.length; i++) {
+
+                        const ingredientsHeader = document.createElement("p")
+                        ingredientsHeader.innerText = "Ingredients";
+
+                        const stepsHeader = document.createElement("p")
+                        stepsHeader.innerText = "Steps";
+
+                        let ingredientsDiv = document.createElement("div")
+
+                        for (let j = 0; j < recipes[i].ingredients.length; j++) {
+                            
+                            let ingredient = document.createElement("p")
+                            ingredient.innerHTML = recipes[i].ingredients[j]
+                            ingredientsDiv.appendChild(ingredient)
+                            
+                        }
+
+                        let stepsDiv = document.createElement("div")
+
+                        for (let k = 0; k < recipes[i].steps.length; k++) {
+                            
+                            let steps = document.createElement("p")
+                            steps.innerHTML = recipes[i].steps[k]
+                            stepsDiv.appendChild(steps)
+                            
+                        }
+
                     const recipeDiv = document.createElement("div")
+                    recipeDiv.className = "recipe"
                     recipeDiv.innerHTML = `
-                        <div class="recipe">
-                            <h3 class="recipeTitle">${recipes[0].title}</h3>
-                            <p class="recipeDescription">${recipes[0].description}</p>
-                            <p class="serves">${recipes[0].serves}</p>
-                            <div class="recipeIngredientsWrapper">
-                            ${recipes[0].ingredients}
-                            </div>
-                            <div class="recipeStepsWrapper">
-                            ${recipes[0].steps}           
-                            </div>
-                        </div>
+                            <h3 class="recipeTitle">${recipes[i].title}</h3>
+                            <p>Description</p>
+                            <p class="recipeDescription">${recipes[i].description}</p>
+                            <p class="serves">Serves: ${recipes[i].serves}</p>
                     `
 
-        const myRecipes = document.getElementById("myRecipes")
-        myRecipes.appendChild(recipeDiv)
+                    const ingredientsFirstChild = ingredientsDiv.firstChild;
+                    ingredientsDiv.insertBefore(ingredientsHeader, ingredientsFirstChild)
+                    
+                    const StepsFirstChild = stepsDiv.firstChild;
+                    stepsDiv.insertBefore(stepsHeader, StepsFirstChild)
+
+                    recipeDiv.appendChild(ingredientsDiv);
+                    recipeDiv.appendChild(stepsDiv);
+
+                    const myRecipes = document.getElementById("myRecipes")
+                    myRecipes.appendChild(recipeDiv)
+
+                    console.log(stepsDiv)
+                        
+                    }
+
+                    
+
+        
         } catch (error) {
             console.log(error, "Error fetching recipes")
         };
