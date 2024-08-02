@@ -313,7 +313,7 @@ body{
 }
 
 #myRecipesHeading{
-    margin-left: 3px;
+    margin: 15px 8px;
 }
 
 #createRecipeButton{
@@ -405,5 +405,13 @@ body{
     margin-top: 20px;
     width: 150px;
     height: 40px;
+}
+
+.recipe{
+    border: 2px rgb(0, 0, 0) solid;
+    border-radius: 5px;
+    margin: 8px 8px;
+    padding: 5px;
+    background-color: rgba(112, 205, 146, 0.749);
 }
 

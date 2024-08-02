@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //username to be added to local storage
             let username = data.username;
 
-            //Data is sent via login route
+            //Data is sent via login route, try/catch for API, if/else for problems with the retrieved data
             try {
                 const response = await fetch('http://localhost:3000/login', {
                     method: 'POST',
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
 
-            //Data is sent via user-register route
+            //Data is sent via user-register route, try/catch for API, if/else for problems with the retrieved data
             try {
                 const response = await fetch('http://localhost:3000/user-register', {
                     method: 'POST',
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 //If user added they are given a message and re-directed to the landing page
                 if (response.ok) {
-                    alert('Form submitted successfully!');
+                    alert('Registration Successfull');
                     window.location.replace("index.html");
                 } else {
                     alert('Failed to submit form.');
@@ -105,6 +105,45 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.clear;
         window.location.replace("index.html");
     })
+
+    async function getRecipes(){
+        const username = localStorage.getItem('username');
+        try {
+            const response = await fetch(`http://localhost:3000/getRecipe/${encodeURIComponent(username)}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                    const recipes = await response.json();
+                    console.log(recipes)
+                    const recipeDiv = document.createElement("div")
+                    recipeDiv.innerHTML = `
+                        <div class="recipe">
+                            <h3 class="recipeTitle">${recipes[0].title}</h3>
+                            <p class="recipeDescription">${recipes[0].description}</p>
+                            <p class="serves">${recipes[0].serves}</p>
+                            <div class="recipeIngredientsWrapper">
+                            ${recipes[0].ingredients}
+                            </div>
+                            <div class="recipeStepsWrapper">
+                            ${recipes[0].steps}           
+                            </div>
+                        </div>
+                    `
+
+        const myRecipes = document.getElementById("myRecipes")
+        myRecipes.appendChild(recipeDiv)
+        } catch (error) {
+            console.log(error, "Error fetching recipes")
+        };
+
+        
+    }
+
+    getRecipes();
+
+    
 
     const createRecipeButton = document.getElementById("createRecipeButton");
     const createRecipeWrapper = document.getElementById("createRecipeFormWrapper");
