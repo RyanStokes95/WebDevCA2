@@ -125,6 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         const stepsHeader = document.createElement("p")
                         stepsHeader.innerText = "Steps";
 
+                        ingredientsHeader.className = "recipeHeader"
+                        stepsHeader.className = "recipeHeader"
+
                         let ingredientsDiv = document.createElement("div")
 
                         for (let j = 0; j < recipes[i].ingredients.length; j++) {
@@ -148,10 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const recipeDiv = document.createElement("div")
                     recipeDiv.className = "recipe"
                     recipeDiv.innerHTML = `
-                            <h3 class="recipeTitle">${recipes[i].title}</h3>
-                            <p>Description</p>
+                            <h3 class="">${recipes[i].title}</h3>
+                            <p class="recipeHeader">Description</p>
                             <p class="recipeDescription">${recipes[i].description}</p>
-                            <p class="serves">Serves: ${recipes[i].serves}</p>
+                            <p class="serves"><span class="recipeHeader">Serves:</span> ${recipes[i].serves}</p>
                     `
 
                     const ingredientsFirstChild = ingredientsDiv.firstChild;
@@ -181,8 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     getRecipes();
-
-    
 
     const createRecipeButton = document.getElementById("createRecipeButton");
     const createRecipeWrapper = document.getElementById("createRecipeFormWrapper");
@@ -252,11 +253,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('addRecipe').addEventListener('click', async () => {
             //Retrieving data from recipe div
             const title = document.getElementById('title').value;
+
             const description = document.getElementById('description').value;
+
             const serves = document.getElementById('serves').value;
+
             const ingredientsWrapper = document.getElementById('ingredientsWrapper');
+
             const ingredients = Array.from(ingredientsWrapper.children).map(child => child.textContent);
+
             const stepsWrapper = document.getElementById('stepsWrapper');
+
             const steps = Array.from(stepsWrapper.children).map(child => child.textContent);
             const username = localStorage.getItem('username');
         
@@ -290,6 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error('Error:', error);
             }
+
+            getRecipes();
+
+            ingredientElement.remove();
 
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
