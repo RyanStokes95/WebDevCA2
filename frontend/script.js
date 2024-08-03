@@ -151,25 +151,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     const recipeDiv = document.createElement("div")
                     recipeDiv.className = "recipe"
                     recipeDiv.innerHTML = `
-                            <h3 class="">${recipes[i].title}</h3>
-                            <p class="recipeHeader">Description</p>
-                            <p class="recipeDescription">${recipes[i].description}</p>
-                            <p class="serves"><span class="recipeHeader">Serves:</span> ${recipes[i].serves}</p>
+                            <h3 class="recipeTitle">${recipes[i].title}</h3>
+                            <div class="recipeContent hidden">
+                                <p class="recipeHeader">Description</p>
+                                <p class="recipeDescription">${recipes[i].description}</p>
+                                <p class="serves"><span class="recipeHeader">Serves:</span> ${recipes[i].serves}</p>
+                            </div>
                     `
 
+                    const recipeContent = recipeDiv.querySelector(".recipeContent");
                     const ingredientsFirstChild = ingredientsDiv.firstChild;
                     ingredientsDiv.insertBefore(ingredientsHeader, ingredientsFirstChild)
                     
                     const StepsFirstChild = stepsDiv.firstChild;
                     stepsDiv.insertBefore(stepsHeader, StepsFirstChild)
 
-                    recipeDiv.appendChild(ingredientsDiv);
-                    recipeDiv.appendChild(stepsDiv);
+                    recipeContent.appendChild(ingredientsDiv);
+                    recipeContent.appendChild(stepsDiv);
+
+                    const recipeTitle = recipeDiv.querySelector(".recipeTitle");
+                    recipeTitle.addEventListener("click", () => {
+                        recipeContent.classList.toggle("hidden");
+                    });
 
                     const myRecipes = document.getElementById("myRecipes")
                     myRecipes.appendChild(recipeDiv)
-
-                    console.log(stepsDiv)
                         
                     }
 
@@ -259,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const serves = document.getElementById('serves').value;
 
             const ingredientsWrapper = document.getElementById('ingredientsWrapper');
-
+            
             const ingredients = Array.from(ingredientsWrapper.children).map(child => child.textContent);
 
             const stepsWrapper = document.getElementById('stepsWrapper');
@@ -299,8 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             getRecipes();
-
-            ingredientElement.remove();
 
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {

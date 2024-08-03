@@ -14,7 +14,7 @@ html{
 }
 
 body{
-    width: 97vw;
+    width: 100vw;
     height: 96vh;
     margin: 0;
     display: flex;
@@ -139,7 +139,6 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
 }
 
 #home{
@@ -232,6 +231,14 @@ body{
     margin-bottom: 3px;
 }
 
+#userHeader{
+    margin: 0 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 #logout{
     color: rgb(112, 205, 146);
     border: 1.5px solid rgb(0, 0, 0);
@@ -284,7 +291,8 @@ body{
 }
 
 #userWelcomeWrapper{
-    height: 10%;
+    margin: 10px 5px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -351,7 +359,7 @@ body{
 }
 
 #title{
-    width: 40%
+    width: 40%;
 }
 
 #description{
@@ -402,7 +410,13 @@ body{
     height: 40px;
 }
 
+#myRecipes{
+    display: flex;
+    flex-direction: column;
+}
+
 .recipe{
+    width: 40%;
     border: 2px rgb(0, 0, 0) solid;
     border-radius: 5px;
     margin: 8px 8px;
@@ -412,5 +426,15 @@ body{
 
 .recipeHeader{
     font-weight: 700;
+}
+
+.recipeTitle{
+    cursor: pointer;
+    font-size: 30px;
+    margin: 0;
+}
+
+.hidden{
+    display: none;
 }
 
