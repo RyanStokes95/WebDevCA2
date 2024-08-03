@@ -53,6 +53,19 @@ body{
     }
 }
 
+#logo{
+    width: 90px;
+}
+
+#headerLogo{
+    display: flex;
+    flex-direction: row;
+}
+
+#landingHeading{
+    align-self: center;
+}
+
 #landingHeader, #landingMain, #registerHeader{
     display: flex;
     flex-direction: column;

@@ -100,14 +100,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const username = localStorage.getItem('username');
+
     const logoutButton = document.getElementById("logout");
     logoutButton.addEventListener('click', () => {
         localStorage.clear;
         window.location.replace("index.html");
     })
 
+    async function getRecipeCount(){
+        try {
+            response = await fetch(`http://localhost:3000/getRecipeCount/${encodeURIComponent(username)}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                const recipeCountValue = String(await response.json());
+                
+                const recipeCount= document.getElementById("recipeCount");
+
+                recipeCount.innerText = "You have logged " + recipeCountValue + " recipes!";
+        } catch (error) {
+            console.log(error, "Error fetching recipe count")
+            alert("Something Went Wrong: " + error.message)
+        }
+    }
+
+    getRecipeCount()
+
     async function getRecipes(){
-        const username = localStorage.getItem('username');
         try {
             const response = await fetch(`http://localhost:3000/getRecipe/${encodeURIComponent(username)}`, {
                         method: 'GET',
@@ -115,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             'Content-Type': 'application/json',
                         },
                     });
-                    const recipes = await response.json()
+                    const recipes = await response.json();
 
                     for (let i = 0; i < recipes.length; i++) {
 

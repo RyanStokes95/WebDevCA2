@@ -140,9 +140,15 @@ app.post('/addRecipe', async (req, res) => {
 //Route to get recipes that belong to the user
 app.get('/getRecipe/:username', async (req, res) => {
     //Request Parameter
-    const { username } = req.params
+    const { username } = req.params;
     //Await the results form the Mongo DB
-    const recipes = await Recipe.find({ username: username })
+    const recipes = await Recipe.find({ username: username });
     //Respond with the recipes in JSON format
     res.status(200).json(recipes);
+})
+
+app.get('/getRecipeCount/:username', async (req, res) =>{
+    const { username } = req.params;
+    const recipeCount = await Recipe.countDocuments({ username: username });
+    res.status(200).json(recipeCount);
 })
