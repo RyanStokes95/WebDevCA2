@@ -6,8 +6,8 @@
 }
 
 html{
-    width: 97vw;
-    height: 97vh;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -47,24 +47,39 @@ body{
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
     #landingBody {
         background-size: 300%;
     }
 }
 
 #logo{
-    width: 90px;
+    width: 120px;
+    margin: 0 30px 0 20px;
 }
 
 #headerLogo{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #landingHeading{
-    align-self: center;
+    font-size: 0px;
 }
+
+@media (max-width: 618px) {
+    #logo {
+        margin: 0;
+        margin-left: 5px;
+    }
+
+    #logout{
+        margin-top: 40px;
+        align-self: flex-start;
+    }
+}
+
 
 #landingHeader, #landingMain, #registerHeader{
     display: flex;
@@ -83,10 +98,9 @@ body{
 }
 
 #landingSubHeading{
-    height: 10%;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    font-size: 300%;
+    margin: 90px 0 25px 0;
+    height: 50px;
+    font-size: 38px;
 }
 
 #landingDescription{
@@ -131,7 +145,7 @@ body{
 }
 
 #signInButtons{
-    margin-top: 20px;
+    margin:20px 0;
 }
 
 #register{
@@ -156,15 +170,18 @@ body{
 
 #home{
     text-decoration: none;
-    color:rgb(0, 0, 0);
-    margin-right: 3px;
+    color: rgb(112, 205, 146);
+    background-color: rgb(255, 255, 255);
+    border: 1.5px solid rgb(0, 0, 0);
+    border-radius: 27%;
+    padding: 3px;
+    margin-right: 40px;
     font-size: 30px;
 }
 
 #home:hover{
-    color:rgb(112, 205, 146);
-    stroke: black;
-    stroke-width: 4px;
+    background-color: rgb(112, 205, 146);
+    color: rgb(0, 0, 0);
 }
 
 #registerBody{
@@ -177,7 +194,6 @@ body{
     flex-direction: row;
     align-self: center;
     width: 95vw;
-    margin-left: 40px;
 }
 
 #sectionWrapper{
@@ -202,7 +218,7 @@ body{
 
 
 #registerForm{
-    padding: 5px 20px;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -229,7 +245,7 @@ body{
 #register2{
     width: 150px;
     height: 30px;
-    margin-top: 20px;
+    margin: 10px 0;
     background-color: rgb(112, 205, 146);
     font-size: 17px;
 }
@@ -244,6 +260,11 @@ body{
     margin-bottom: 3px;
 }
 
+#userHeading{
+    align-self: center;
+    font-size: 50px;
+}
+
 #userHeader{
     margin: 0 5px;
     display: flex;
@@ -254,16 +275,18 @@ body{
 
 #logout{
     color: rgb(112, 205, 146);
+    background-color: rgb(255, 255, 255);
     border: 1.5px solid rgb(0, 0, 0);
-    border-radius: 35%;
+    border-radius: 27%;
     padding: 3px;
-    font-size: 25px;
-    margin-right: 20px;
+    font-size: 40px;
+    margin-right: 50px;
     justify-self:center;
 }
 
 #logout:hover{
-    background-color: rgba(255, 255, 255, 0.916);
+    background-color: rgb(112, 205, 146);
+    color: rgb(0, 0, 0);
 }
 
 #userMainWrapper{
@@ -277,17 +300,27 @@ body{
     display: flex;
     flex-direction: row;
     height: 50px;
+    width: 100vw;
+    margin: 0 0 20px 0;
+    justify-content: space-around;
+    align-self: center;
 }
 
 #userNav ul{
-    padding: 0;
+    padding: 5px
 }
 
 #userNav li, #userNav a{
-    margin-right: 10px;
-    display: inline;
+    margin: 0 30px;
+    display: inline-block;
     text-decoration: none;
     color: rgb(0, 0, 0);
+    width: 100px;
+}
+
+#userNav a{
+    font-size: 18px;
+    text-align: center;
 }
 
 #userNav a{
@@ -304,7 +337,7 @@ body{
 }
 
 #userWelcomeWrapper{
-    margin: 10px 5px;
+    margin: 30px 5px;
     height: 80px;
     display: flex;
     flex-direction: row;
@@ -312,16 +345,37 @@ body{
 }
 
 #userWelcome{
+    width: 50%;
     font-size: 30px;
     margin-left: 3px;
     font-weight: 600;
 }
 
+#recipeCount{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.671);
+    padding: 3px;
+}
+
 #createRecipeWrapper{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     padding: 5px;
+    width: 80%;
+}
+
+#createRecipe{
+    width: 100;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
 }
 
 #myRecipesWrapper{
@@ -344,6 +398,21 @@ body{
 
 #createRecipeButton:hover, #addRecipe:hover{
     background-color: rgb(84, 153, 109);
+    color: rgb(255, 255, 255);
+}
+
+#minimiseRecipeButton{
+    width: 170px;
+    height: 50px;
+    padding: 3px;
+    background-color: rgba(136, 136, 136, 0.932);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+
+#minimiseRecipeButton:hover{
+    background-color: rgb(186, 186, 186);
     color: rgb(255, 255, 255);
 }
 
@@ -428,12 +497,15 @@ body{
     flex-direction: column;
 }
 
+#myRecipesHeading{
+    font-size: 40px;
+}
+
 .recipe{
-    width: 40%;
+    width: 80%;
     border: 2px rgb(0, 0, 0) solid;
     border-radius: 5px;
     margin: 8px 8px;
-    padding: 5px;
     background-color: rgba(112, 205, 146, 0.749);
 }
 
@@ -443,11 +515,16 @@ body{
 
 .recipeTitle{
     cursor: pointer;
+    padding: 5px;
     font-size: 30px;
     margin: 0;
 }
 
 .hidden{
     display: none;
+}
+
+.recipeContent{
+    padding: 5px;
 }
 

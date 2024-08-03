@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.replace("index.html");
     })
 
+    const minimiseRecipeButton = document.getElementById("minimiseRecipeButton");
+    minimiseRecipeButton.style.visibility = "hidden";
+
     async function getRecipeCount(){
         try {
             response = await fetch(`http://localhost:3000/getRecipeCount/${encodeURIComponent(username)}`, {
@@ -130,6 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
     getRecipeCount()
 
     async function getRecipes(){
+        const myRecipes = document.getElementById("myRecipes")
+        myRecipes.innerHTML = "";
         try {
             const response = await fetch(`http://localhost:3000/getRecipe/${encodeURIComponent(username)}`, {
                         method: 'GET',
@@ -182,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     `
 
                     const recipeContent = recipeDiv.querySelector(".recipeContent");
+
                     const ingredientsFirstChild = ingredientsDiv.firstChild;
                     ingredientsDiv.insertBefore(ingredientsHeader, ingredientsFirstChild)
                     
@@ -194,9 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const recipeTitle = recipeDiv.querySelector(".recipeTitle");
                     recipeTitle.addEventListener("click", () => {
                         recipeContent.classList.toggle("hidden");
+                        recipeContent.style.backgroundColor = "rgb(255, 255, 255)";
                     });
 
-                    const myRecipes = document.getElementById("myRecipes")
                     myRecipes.appendChild(recipeDiv)
                         
                     }
@@ -216,7 +222,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const createRecipeButton = document.getElementById("createRecipeButton");
     const createRecipeWrapper = document.getElementById("createRecipeFormWrapper");
 
+    minimiseRecipeButton.addEventListener('click', () => {
+        if (createRecipeWrapper) {
+            createRecipeWrapper.style.visibility = "hidden"
+        }
+        createRecipeButton.style.visibility = "visible";
+        minimiseRecipeButton.style.visibility = "hidden";
+        createRecipeWrapper.innerHTML = "";
+    });
+
     createRecipeButton.addEventListener('click', () => {
+        minimiseRecipeButton.style.visibility = "visible";
+        createRecipeButton.style.visibility = "hidden";
+        createRecipeWrapper.style.visibility = "visible";
         createRecipeWrapper.innerHTML = `
             <div id="createRecipeForm">
                 <label for="title">Title</label>
@@ -326,6 +344,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error:', error);
             }
 
+            const ingredientElement = document.getElementById("ingredientsWrapper");
+            const stepsElement = document.getElementById("stepsWrapper")
+
+            ingredientElement.style.visibility = "hidden";
+            ingredientElement.style.height = "0px";
+            stepsElement.style.visibility = "hidden";
+            stepsElement.style.height = "0px";
+
             getRecipes();
 
             const inputs = document.querySelectorAll('input, textarea');
@@ -334,5 +360,5 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
         });
-    });//dont go beyond
+    });//Create Recipe Button Click End
 });
