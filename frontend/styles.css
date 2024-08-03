@@ -427,6 +427,26 @@ body{
     font-size: 18px;
 }
 
+.titleDelete{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.deleteButton{
+    font-size: 30px;
+    width: 20%;
+    border-radius: 0 3% 3% 0;
+    border: 0;
+    border-left: 2px solid black;
+    background-color: rgba(64, 64, 64, 0.774);
+    color: rgb(255, 255, 255);
+}
+
+.deleteButton:hover{
+    background-color: rgb(226, 49, 49);
+}
+
 #stepsWrapper, #ingredientsWrapper {
     visibility: hidden;
     margin-top: 10px;
@@ -502,7 +522,7 @@ body{
 }
 
 .recipe{
-    width: 80%;
+    width: 100%;
     border: 2px rgb(0, 0, 0) solid;
     border-radius: 5px;
     margin: 8px 8px;
@@ -514,10 +534,18 @@ body{
 }
 
 .recipeTitle{
-    cursor: pointer;
     padding: 5px;
     font-size: 30px;
     margin: 0;
+    width: 80%;
+}
+
+.recipeTitle:hover{
+    background-color: rgb(53, 220, 114);
+}
+
+.titleDelete{
+    cursor: pointer;
 }
 
 .hidden{

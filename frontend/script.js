@@ -178,7 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const recipeDiv = document.createElement("div")
                     recipeDiv.className = "recipe"
                     recipeDiv.innerHTML = `
-                            <h3 class="recipeTitle">${recipes[i].title}</h3>
+                            <div class="titleDelete">
+                                <h3 class="recipeTitle">${recipes[i].title}</h3>
+                                <button class="deleteButton">Delete</button>
+                            </div>
                             <div class="recipeContent hidden">
                                 <p class="recipeHeader">Description</p>
                                 <p class="recipeDescription">${recipes[i].description}</p>
