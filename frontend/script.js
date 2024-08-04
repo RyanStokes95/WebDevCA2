@@ -5,16 +5,18 @@ Created - 18/07/24
 Last Modified - 01/08/24
 */
 
+const usernameLocal = localStorage.getItem('username');
+console.log("HEloo");
+const registerBody = document.getElementById("registerBody");
 //Local Session Storage - Username retrieval for DB queries
-document.addEventListener('DOMContentLoaded', () => {
-    const username = localStorage.getItem('username');
+if (registerBody) {
     //Displays username and welcome message on dashboard
-    if (username) {
-        document.getElementById("userWelcome").innerHTML = "Welcome " + username + "!";
-    }
-});
+    if (usernameLocal) {
+        document.getElementById("userWelcome").innerHTML = "Welcome " + usernameLocal + "!";
+    }   
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event fired');
     // Check if the signInForm element exists before adding event listener
     const signInForm = document.getElementById('signInForm');
     if (signInForm) {
@@ -32,7 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //Data is sent via login route, try/catch for API, if/else for problems with the retrieved data
             try {
-                const response = await fetch('http://localhost:3000/login', {
+                console.log("hello" + username);
+                const response = await fetch('/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -41,10 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 //result variable assigned the JSON response
-                const result = await response.json();
-
+                console.log(response);
                 //If result is success the user is logged in
-                if (result.success) {
+                if (response.ok) {
+                    console.log("Success");
                     //Upon login user dash is opened and username is sent to local storage
                     window.location.replace("userDashboard.html");
                     localStorage.setItem('username', username);
@@ -59,10 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    else{console.log("Sign in not found")}
 
     // Check if the registerForm element exists before adding event listener
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
+        console.log("Working")
         registerForm.addEventListener('submit', async (event) => {
             //Prevent default behaviour as data is posted
             event.preventDefault();
@@ -73,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //Data is sent via user-register route, try/catch for API, if/else for problems with the retrieved data
             try {
-                const response = await fetch('http://localhost:3000/user-register', {
+                const response = await fetch('/user-register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -95,10 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
 
 
-document.addEventListener('DOMContentLoaded', () => {
+
 
     const username = localStorage.getItem('username');
 
@@ -114,7 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function getRecipeCount() {
         try {
-            const response = await fetch(`http://localhost:3000/getRecipeCount/${encodeURIComponent(username)}`, {
+            const usernameLocal = localStorage.getItem('username');
+            const response = await fetch(`/getRecipeCount/${encodeURIComponent(usernameLocal)}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -136,7 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const myRecipes = document.getElementById("myRecipes");
         myRecipes.innerHTML = "";
         try {
-            const response = await fetch(`http://localhost:3000/getRecipe/${encodeURIComponent(username)}`, {
+            const usernameLocal = localStorage.getItem('username');
+            console.log(usernameLocal);
+            const response = await fetch(`/getRecipe/${encodeURIComponent(usernameLocal)}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -222,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             deleteButton.addEventListener('click', async () => {
                 const title = parentDiv.querySelector(".recipeTitle").textContent.trim();
                 try {
-                    const response = await fetch(`http://localhost:3000/deleteRecipe/${encodeURIComponent(title)}`, {
+                    const response = await fetch(`/deleteRecipe/${encodeURIComponent(title)}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
@@ -230,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     const deletedRecipe = await response.json();
                     await getRecipes();
-                    alert(`${title} has been deleted successfully`);
                 } catch (error) {
                     alert("Could not delete Recipe: " + error.message);
                 }
@@ -352,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(recipeData);
 
             try {
-                const response = await fetch('http://localhost:3000/addRecipe', {
+                const response = await fetch('/addRecipe', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -387,5 +393,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
     });//Create Recipe Button Click End
-
-});

@@ -11,33 +11,57 @@ const { connectDB } = require('./dbconfig');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors =  require('cors');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const User = require('./schemas/User')
 const Recipe = require('./schemas/Recipe')
+const path = require("path");
 const port = process.env.PORT;
 const app = express();
 
 //Middleware
-app.use(cors());
+const corsOptions = {
+    origin: 'https://mykitchenpal-cd208d106a16.herokuapp.com',
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
 
-app.use(express.static(path.join(__dirname, 'frontend')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+// Redirect HTTP to HTTPS
+app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect(`https://${req.headers.host}${req.url}`);
+    }
+    next();
 });
 
-//Server Connection and error handling
-const server = app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
-
-server.on('error', (error) => {
-    console.error(`Error starting the server: ${error.message}`);
-});
 
 //Coonect to Mongo DB
 connectDB();
+
+//Route to get recipes that belong to the user
+app.get('/getRecipe/:usernameLocal', async (req, res) => {
+    //Request Parameter
+    const { usernameLocal } = req.params;
+    //Await the results form the Mongo DB
+    const recipes = await Recipe.find({ username: usernameLocal });
+    //Respond with the recipes in JSON format
+    res.status(200).json(recipes);
+})
+
+app.get('/getRecipeCount/:usernameLocal', async (req, res) => {
+    const { usernameLocal } = req.params;
+    const recipeCount = await Recipe.countDocuments({ username: usernameLocal });
+    res.status(200).json(recipeCount);
+})
+
+app.delete('/deleteRecipe/:title', async (req, res) => {
+    const { title } = req.params;
+    const deletedRecipe = await Recipe.deleteOne({ title: title });
+    res.status(200).json(`${ title }` + " has been successfully deleted")
+})
+
 
 //User Register Route
 app.post('/user-register', async (req, res) => {
@@ -87,31 +111,31 @@ app.post('/user-register', async (req, res) => {
         }
     });
 
-// Login Route
-app.post('/login', async (req, res) => {
-    //username and password request body
-    const { username, password } = req.body;
-    //if username and hashed password match a DB record user is logged in
-    try {
-        //Check username
-        const user = await User.findOne({ username });
-        if (!user) {
-            return res.status(401).send("Invalid Username or Password");
+    app.post('/login', async (req, res) => {
+        const { username, password } = req.body;
+        console.log('Login attempt:', { username, password });
+    
+        try {
+            const user = await User.findOne({ username });
+            if (!user) {
+                console.log('User not found');
+                return res.status(401).send("Invalid Username or Password");
+            }
+    
+            const isMatch = await bcrypt.compare(password, user.password);
+            console.log('Password match:', isMatch);
+    
+            if (!isMatch) {
+                console.log('Password does not match');
+                return res.status(401).send('Invalid Username or Password');
+            }
+    
+            res.json({ success: true });
+        } catch (error) {
+            console.error("Error during login:", error);
+            res.status(500).send("Server Error");
         }
-
-        //Check password using BCrypt
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(401).send('Invalid Username or Password');
-        }
-        //Response of true if there is a match found
-        res.json({ success: true });
-    //Error handling
-    } catch (error) {
-        console.error("Error Cannot Login", error);
-        res.status(500).send("Server Error");
-    }
-});
+    });
 
 app.post('/addRecipe', async (req, res) => {
     const { 
@@ -143,24 +167,18 @@ app.post('/addRecipe', async (req, res) => {
      }
 })
 
-//Route to get recipes that belong to the user
-app.get('/getRecipe/:username', async (req, res) => {
-    //Request Parameter
-    const { username } = req.params;
-    //Await the results form the Mongo DB
-    const recipes = await Recipe.find({ username: username });
-    //Respond with the recipes in JSON format
-    res.status(200).json(recipes);
-})
+app.use(express.static(path.join(__dirname, 'frontend')));
 
-app.get('/getRecipeCount/:username', async (req, res) => {
-    const { username } = req.params;
-    const recipeCount = await Recipe.countDocuments({ username: username });
-    res.status(200).json(recipeCount);
-})
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+});
 
-app.delete('/deleteRecipe/:title', async (req, res) => {
-    const { title } = req.params;
-    const deletedRecipe = await Recipe.deleteOne({ title: title });
-    res.status(200).json(`${ title }` + " has been successfully deleted")
-})
+//Server Connection and error handling
+const server = app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+server.on('error', (error) => {
+    console.error(`Error starting the server: ${error.message}`);
+});
+

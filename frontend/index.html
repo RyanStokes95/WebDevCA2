@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" async></script>
     <title>My Kitchen Pal - Homepage</title>
 </head>
 <body id="landingBody">
@@ -21,18 +22,18 @@
               and organize your favorite recipes, and explore new cuisines
                with our comprehensive collection. Perfect for home cooks 
                and food enthusiasts alike!</p>
-        <form id="signInForm" method="POST">
+        <form id="signInForm" method="post" action="/login">
             <label for="username" id="userNameLabel">Username</label>
             <input type="text" id="username" name="username">
 
             <label for="password" id="passwordInputLabel">Password</label>
             <input type="password" id="password" name="password">
             <div id="signInButtons">
-                <button id="signIn">Sign In</button>
+                <button id="signIn" type="submit" form="signInForm">Sign In</button>
                 <button type="button" id="register" onclick="window.location.href='register.html'">Register</button>
             </div>
+            
         </form>
-        <script src="script.js" async></script>
     </main>
 </body>
 </html>

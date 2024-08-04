@@ -2,10 +2,13 @@
   "name": "webdevca2",
   "version": "1.0.0",
   "description": "Web Apllication Development CA2 - Final Project 2024",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "devStart": "nodemon server.js",
     "start": "node server.js"
+  },
+  "engines": {
+    "node": "16.x"
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,7 @@
   },
   "homepage": "https://github.com/RyanStokes95/WebDevCA2#readme",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
