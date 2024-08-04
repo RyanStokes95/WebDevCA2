@@ -1,3 +1,5 @@
+//Universal CSS 
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 *{
@@ -21,6 +23,8 @@ body{
     flex-direction: column;
 }
 
+//Index.html CSS
+
 #landingBody{
     background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash.jpg);
     background-size:cover;
@@ -29,34 +33,6 @@ body{
     background-blend-mode: soft-light;
 }
 
-@media (max-width: 1200px) {
-    #landingBody {
-        background-size: 200%;
-    }
-}
-
-@media (max-width: 900px) {
-    #landingBody {
-        background-size: 220%;
-    }
-}
-
-@media (max-width: 700px) {
-    #landingBody {
-        background-size: 270%;
-    }
-}
-
-@media (max-width: 550px) {
-    #landingBody {
-        background-size: 300%;
-    }
-}
-
-#logo{
-    width: 120px;
-    margin: 0 30px 0 20px;
-}
 
 #headerLogo{
     display: flex;
@@ -148,6 +124,8 @@ body{
     margin:20px 0;
 }
 
+//Register.html CSS
+
 #register{
     background-color: rgb(112, 205, 146);
     width: 100px;
@@ -168,17 +146,6 @@ body{
     justify-content: space-between;
 }
 
-#home{
-    text-decoration: none;
-    color: rgb(112, 205, 146);
-    background-color: rgb(255, 255, 255);
-    border: 1.5px solid rgb(0, 0, 0);
-    border-radius: 27%;
-    padding: 3px;
-    margin-right: 40px;
-    font-size: 30px;
-}
-
 #home:hover{
     background-color: rgb(112, 205, 146);
     color: rgb(0, 0, 0);
@@ -187,59 +154,6 @@ body{
 #registerBody{
     background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash2.jpg);
     background-size:cover;
-}
-
-#registerMain{
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    width: 95vw;
-}
-
-#sectionWrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
-    background-size: 100% 135%;
-    border: 1px solid rgb(0, 0, 0);
-    width: 70vw;
-}
-
-#registerSection{
-    font-size: 2.7em;
-    width: 70%;
-    background-color: rgba(255, 255, 255, 0.822);
-    border: 2px solid rgb(0, 0, 0);
-    padding: 50px;
-    margin: 50px;
-}
-
-
-#registerForm{
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.475);
-    background-size: cover;
-    border: 1px solid rgb(0, 0, 0);
-    width: 60vw;
-}
-
-.normalInput{
-    width: 20vw;
-}
-
-.longInput{
-    width: 30vw;
-    margin-right: 10px;
-}
-
-.longInput, .normalInput{
-    height: 30px;
-    font-size: 18px;
 }
 
 #register2{
@@ -260,9 +174,155 @@ body{
     margin-bottom: 3px;
 }
 
-#userHeading{
-    align-self: center;
-    font-size: 50px;
+@media (max-width: 799px) {
+    #home{
+        text-decoration: none;
+        color: rgb(112, 205, 146);
+        background-color: rgb(255, 255, 255);
+        border: 1.5px solid rgb(0, 0, 0);
+        border-radius: 27%;
+        padding: 3px;
+        margin-right: 40px;
+        font-size: 20px;
+    }
+
+    #userHeading{
+        align-self: center;
+        font-size: 30px;
+    }
+    
+    #logo{
+        width: 50px;
+        margin: 0 30px 0 20px;
+    }
+
+    #registerMain {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-self: center;
+        align-self: center;
+    }
+
+    #sectionWrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
+        background-size: 100% 135%;
+        border: 1px solid rgb(0, 0, 0);
+        width: 90vw;
+    }
+
+    #registerForm{
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.475);
+        background-size: cover;
+        border: 1px solid rgb(0, 0, 0);
+        width: 90vw;
+    }
+
+    #registerSection{
+        font-size: 1.5em;
+        width: 70%;
+        background-color: rgba(255, 255, 255, 0.822);
+        border: 2px solid rgb(0, 0, 0);
+        padding: 50px;
+        margin: 50px;
+    }
+
+    .normalInput{
+        width: 60vw;
+    }
+    
+    .longInput{
+        width: 80vw;
+        margin-right: 10px;
+    }
+    
+    .longInput, .normalInput{
+        height: 30px;
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 800px) {
+    #home{
+        text-decoration: none;
+        color: rgb(112, 205, 146);
+        background-color: rgb(255, 255, 255);
+        border: 1.5px solid rgb(0, 0, 0);
+        border-radius: 27%;
+        padding: 3px;
+        margin-right: 40px;
+        font-size: 30px;
+    }
+
+    #userHeading{
+        align-self: center;
+        font-size: 50px;
+    }
+
+    #logo{
+        width: 120px;
+        margin: 0 30px 0 20px;
+    }
+    
+    #registerMain{
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+        justify-content: center;
+        width: 95vw;
+    }
+
+    #sectionWrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
+        background-size: 100% 135%;
+        border: 1px solid rgb(0, 0, 0);
+        width: 70vw;
+    }
+
+    #registerForm{
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.475);
+        background-size: cover;
+        border: 1px solid rgb(0, 0, 0);
+        width: 60vw;
+    }
+
+    #registerSection{
+        font-size: 2.7em;
+        width: 70%;
+        background-color: rgba(255, 255, 255, 0.822);
+        border: 2px solid rgb(0, 0, 0);
+        padding: 50px;
+        margin: 50px;
+    }
+
+    .normalInput{
+        width: 20vw;
+    }
+    
+    .longInput{
+        width: 30vw;
+        margin-right: 10px;
+    }
+    
+    .longInput, .normalInput{
+        height: 30px;
+        font-size: 18px;
+    }
 }
 
 #userHeader{
