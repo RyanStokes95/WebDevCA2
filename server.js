@@ -147,8 +147,14 @@ app.get('/getRecipe/:username', async (req, res) => {
     res.status(200).json(recipes);
 })
 
-app.get('/getRecipeCount/:username', async (req, res) =>{
+app.get('/getRecipeCount/:username', async (req, res) => {
     const { username } = req.params;
     const recipeCount = await Recipe.countDocuments({ username: username });
     res.status(200).json(recipeCount);
+})
+
+app.delete('/deleteRecipe/:title', async (req, res) => {
+    const { title } = req.params;
+    const deletedRecipe = await Recipe.deleteOne({ title: title });
+    res.status(200).json(`${ title }` + " has been successfully deleted")
 })
