@@ -4,7 +4,8 @@
   "description": "Web Apllication Development CA2 - Final Project 2024",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
