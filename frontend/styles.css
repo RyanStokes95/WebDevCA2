@@ -554,8 +554,8 @@ body{
 }
 
 #myRecipesWrapper{
-    margin-left: 40px;
-    width: 98.5vw;
+    margin-left: 35px;
+    width: 98vw;
     align-self: center;
     padding: 3px;
     background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
@@ -713,7 +713,7 @@ body{
     border: 2px rgb(0, 0, 0) solid;
     border-radius: 5px;
     margin: 8px 11px;
-    background-color: rgba(255, 255, 255, 0.671);
+    background-color: rgba(255, 255, 255, 0.872);
 }
 
 .recipeHeader{
