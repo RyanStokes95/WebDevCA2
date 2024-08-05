@@ -539,6 +539,7 @@ body{
 }
 
 #createRecipeWrapper{
+    margin-left: 5px;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -553,13 +554,22 @@ body{
 }
 
 #myRecipesWrapper{
+    margin-left: 40px;
+    width: 98.5vw;
+    align-self: center;
     padding: 3px;
     background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    border: 2px rgb(255, 255, 255) solid;
 }
 
 #myRecipesHeading{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
     margin: 15px 8px;
 }
 
