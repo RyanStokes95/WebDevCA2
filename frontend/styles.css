@@ -555,6 +555,8 @@ body{
 #myRecipesWrapper{
     padding: 3px;
     background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #myRecipesHeading{
@@ -697,7 +699,7 @@ body{
 }
 
 .recipe{
-    width: 100%;
+    width: 90%;
     border: 2px rgb(0, 0, 0) solid;
     border-radius: 5px;
     margin: 8px 11px;
