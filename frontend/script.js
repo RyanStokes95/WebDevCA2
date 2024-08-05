@@ -15,8 +15,6 @@ if (registerBody) {
         document.getElementById("userWelcome").innerHTML = "Welcome " + usernameLocal + "!";
     }   
 }
-
-    console.log('DOMContentLoaded event fired');
     // Check if the signInForm element exists before adding event listener
     const signInForm = document.getElementById('signInForm');
     if (signInForm) {
@@ -237,6 +235,7 @@ if (registerBody) {
                     });
                     const deletedRecipe = await response.json();
                     await getRecipes();
+                    await getRecipeCount();
                 } catch (error) {
                     alert("Could not delete Recipe: " + error.message);
                 }

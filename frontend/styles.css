@@ -553,7 +553,8 @@ body{
 }
 
 #myRecipesWrapper{
-    height: 65%;
+    padding: 3px;
+    background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
 }
 
 #myRecipesHeading{
@@ -699,8 +700,8 @@ body{
     width: 100%;
     border: 2px rgb(0, 0, 0) solid;
     border-radius: 5px;
-    margin: 8px 8px;
-    background-color: rgba(112, 205, 146, 0.749);
+    margin: 8px 11px;
+    background-color: rgba(255, 255, 255, 0.671);
 }
 
 .recipeHeader{
@@ -730,3 +731,4 @@ body{
     padding: 5px;
 }
 
+#myRecipesWrapper
