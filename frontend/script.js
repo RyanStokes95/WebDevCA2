@@ -2,7 +2,7 @@
 script.js
 Ryan Stokes
 Created - 18/07/24
-Last Modified - 01/08/24
+Last Modified - 04/08/24
 */
 
 const usernameLocal = localStorage.getItem('username');
