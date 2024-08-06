@@ -1,4 +1,10 @@
-My repository for Web Application Development CA2
+My Kitchen Pal is a recipe storage site. 
+The frontend of the site is served by static HTML, CSS and scripted using Javascript.
+The backend of the application runs on Node.js and Express. 
+The backend connects to a MongoDB Database that runs with Mongoose.
 
-In this repository is my CA2 project, I'm creating a recipe storage site using HTML, CSS, Javascript for the frontend
-and Node.js and Express for my backend. For my Database I have utilised mongoDB and Mongoose
+GitHub Repo: https://github.com/RyanStokes95/WebDevCA2
+
+The site is deployed on Heroku
+
+Heroku Site Link: https://mykitchenpal-cd208d106a16.herokuapp.com/index.html

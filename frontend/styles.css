@@ -379,7 +379,7 @@ body{
 }
 
 #myRecipesWrapper{
-    margin-left: 35px;
+    margin-left: 20px;
     width: 98vw;
     align-self: center;
     padding: 3px;
@@ -576,8 +576,8 @@ body{
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        width: 100vw%;
-        margin-left: 15px;
+        width: 100vw;
+        margin-left: 18px;
     }
 
     #home{
