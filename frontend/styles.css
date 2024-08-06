@@ -534,7 +534,6 @@ body{
 }
 
 .recipe{
-    width: 90%;
     border: 2px rgb(0, 0, 0) solid;
     border-radius: 5px;
     margin: 8px 11px;
@@ -660,6 +659,7 @@ body{
 
     #userWelcomeWrapper{
         width: 96%;
+        margin-left: 0;
     }
 
     #userHeader{
@@ -683,6 +683,14 @@ body{
     
     #myRecipes{
         width: 100%;
+    }
+
+    .recipe{
+        font-size: 20px;
+    }
+
+    .deleteButton{
+        font-size: 20px;
     }
     
     
