@@ -12,7 +12,7 @@ body{
 }
 
 #landingBody{
-    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash.jpg);
+    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash.webp);
     background-size:cover;
     background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.1);
@@ -191,7 +191,7 @@ body{
 }
 
 #registerBody{
-    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash2.jpg);
+    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash2.webp);
     background-size:cover;
 }
 
@@ -230,7 +230,7 @@ body{
 }
 
 #registerBody{
-    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash2.jpg);
+    background-image: url(images/lukas-blazek-EWDvHNNfUmQ-unsplash2.webp);
     background-size:cover;
 }
 
@@ -246,7 +246,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
+    background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.webp);
     background-size: 100% 135%;
     border: 1px solid rgb(0, 0, 0);
     width: 70vw;
@@ -383,7 +383,7 @@ body{
     width: 98vw;
     align-self: center;
     padding: 3px;
-    background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
+    background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.webp);
     background-repeat: no-repeat;
     background-size: cover;
     border: 2px rgb(255, 255, 255) solid;
@@ -613,7 +613,7 @@ body{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
+        background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.webp);
         background-size: 135%;
         border: 1px solid rgb(0, 0, 0);
     }
@@ -741,7 +741,7 @@ body{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.jpg);
+        background-image: url(images/lum3n-cHc5H3_FKhs-unsplash.webp);
         background-size: 100% 300%;
         border: 1px solid rgb(0, 0, 0);
     }
