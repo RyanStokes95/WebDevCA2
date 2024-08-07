@@ -2,7 +2,7 @@
 server.js
 Ryan Stokes
 Created - 18/07/24
-Last Modified - 04/08/24
+Last Modified - 07/08/24
 */
 
 //imports and dependencies
@@ -18,7 +18,7 @@ const path = require("path");
 const port = process.env.PORT;
 const app = express();
 
-//Middleware
+//Middleware and JSON Parsing
 const corsOptions = {
     origin: 'https://mykitchenpal-cd208d106a16.herokuapp.com',
     optionsSuccessStatus: 200
@@ -42,7 +42,7 @@ connectDB();
 
 //Route to get recipes that belong to the user
 app.get('/getRecipe/:usernameLocal', async (req, res) => {
-    //Request Parameter
+    //Request Parameter - local storage
     const { usernameLocal } = req.params;
     //Await the results form the Mongo DB
     const recipes = await Recipe.find({ username: usernameLocal });
@@ -50,14 +50,19 @@ app.get('/getRecipe/:usernameLocal', async (req, res) => {
     res.status(200).json(recipes);
 })
 
+//Route which gets a users recipe count
 app.get('/getRecipeCount/:usernameLocal', async (req, res) => {
+    //Request Parameter - local storage
     const { usernameLocal } = req.params;
+    //Await the results form the Mongo DB
     const recipeCount = await Recipe.countDocuments({ username: usernameLocal });
     res.status(200).json(recipeCount);
 })
 
+//Route which deletes a specified recipe by its title
 app.delete('/deleteRecipe/:title', async (req, res) => {
     const { title } = req.params;
+    //Await the results form the Mongo DB
     const deletedRecipe = await Recipe.deleteOne({ title: title });
     res.status(200).json(`${ title }` + " has been successfully deleted")
 })
@@ -111,32 +116,35 @@ app.post('/user-register', async (req, res) => {
         }
     });
 
-    app.post('/login', async (req, res) => {
-        const { username, password } = req.body;
-        console.log('Login attempt:', { username, password });
-    
-        try {
-            const user = await User.findOne({ username });
-            if (!user) {
-                console.log('User not found');
-                return res.status(401).send("Invalid Username or Password");
-            }
-    
-            const isMatch = await bcrypt.compare(password, user.password);
-            console.log('Password match:', isMatch);
-    
-            if (!isMatch) {
-                console.log('Password does not match');
-                return res.status(401).send('Invalid Username or Password');
-            }
-    
-            res.json({ success: true });
-        } catch (error) {
-            console.error("Error during login:", error);
-            res.status(500).send("Server Error");
-        }
-    });
+//Route which takes in a username and password and checks them against a databas entry
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    console.log('Login attempt:', { username, password });
 
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            console.log('User not found');
+            return res.status(401).send("Invalid Username or Password");
+        }
+
+        //BCrypt used to compare password and hashed password which is stored
+        const isMatch = await bcrypt.compare(password, user.password);
+        console.log('Password match:', isMatch);
+
+        if (!isMatch) {
+            console.log('Password does not match');
+            return res.status(401).send('Invalid Username or Password');
+        }
+        //Returns success if match
+        res.json({ success: true });
+    } catch (error) {
+        console.error("Error during login:", error);
+        res.status(500).send("Server Error");
+    }
+});
+
+//Route which takes in recipe data and creates a new recipe object from the schema
 app.post('/addRecipe', async (req, res) => {
     const { 
 
@@ -160,6 +168,7 @@ app.post('/addRecipe', async (req, res) => {
             username
 
         })
+        //Success if data is stored in mongoDB
         await formData.save();
         res.status(200).send("Recipe Submitted Successfully");
      } catch (error) {
@@ -167,6 +176,8 @@ app.post('/addRecipe', async (req, res) => {
      }
 })
 
+
+//Code for Heroku to serve static files and display landing page
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.get('*', (req, res) => {

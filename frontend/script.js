@@ -2,7 +2,7 @@
 script.js
 Ryan Stokes
 Created - 18/07/24
-Last Modified - 06/08/24
+Last Modified - 07/08/24
 */
 
 //Set username variable from local storage
@@ -137,12 +137,21 @@ async function getRecipeCount() {
 
 getRecipeCount();
 
+//Function which fetches and displays a users reipe
 async function getRecipes() {
+    //Recipe wrapper assigned to variable
     const myRecipes = document.getElementById("myRecipes");
+
+    /*Recipes are cleared before new list is added, 
+    prevents duplication of existing recipes after 
+    each call of the function*/
     myRecipes.innerHTML = "";
+
+    //Try/Catch for error handling
     try {
+        //username retrieved form local storage
         const usernameLocal = localStorage.getItem('username');
-        console.log(usernameLocal);
+        //fetch data using the getRecipes route, takes in username
         const response = await fetch(`/getRecipe/${encodeURIComponent(usernameLocal)}`, {
             method: 'GET',
             headers: {
@@ -151,6 +160,12 @@ async function getRecipes() {
         });
         const recipes = await response.json();
 
+        /*
+        Two for loops nested within one for loop
+        Outer loop iterates through the recipes retrieved in the getRecipes route
+        during each iteration the two inner loops iterate through an individual recipes
+        ingredients and steps and append them into a div to be displayed on the uiser dash
+        */
         for (let i = 0; i < recipes.length; i++) {
             const ingredientsHeader = document.createElement("p");
             ingredientsHeader.innerText = "Ingredients";
@@ -161,6 +176,7 @@ async function getRecipes() {
             ingredientsHeader.className = "recipeHeader";
             stepsHeader.className = "recipeHeader";
 
+            //Ingredients list creation for recipe
             let ingredientsDiv = document.createElement("div");
 
             for (let j = 0; j < recipes[i].ingredients.length; j++) {
@@ -169,6 +185,7 @@ async function getRecipes() {
                 ingredientsDiv.appendChild(ingredient);
             }
 
+            //Steps list creation for recipe
             let stepsDiv = document.createElement("div");
 
             for (let k = 0; k < recipes[i].steps.length; k++) {
@@ -177,8 +194,10 @@ async function getRecipes() {
                 stepsDiv.appendChild(step);
             }
 
+            //Recipe element is created, ingedients and steps not added yet 
             const recipeDiv = document.createElement("div");
             recipeDiv.className = "recipe";
+            //Below element is split into two divs as the recipe info (Dexcription, serves etc.) is minimised
             recipeDiv.innerHTML = `
                 <div class="titleDelete">
                     <h3 class="recipeTitle">${recipes[i].title}</h3>
@@ -190,54 +209,70 @@ async function getRecipes() {
                     <p class="serves"><span class="recipeHeader">Serves:</span> ${recipes[i].serves}</p>
                 </div>
             `;
-
+            //Hidden recipe info assigned to variable
             const recipeContent = recipeDiv.querySelector(".recipeContent");
+            
+            //Add headers to the ingredients and steps divs as the first child
             const ingredientsFirstChild = ingredientsDiv.firstChild;
             ingredientsDiv.insertBefore(ingredientsHeader, ingredientsFirstChild);
 
             const stepsFirstChild = stepsDiv.firstChild;
             stepsDiv.insertBefore(stepsHeader, stepsFirstChild);
 
+            //Add completed divs to the recipe content
             recipeContent.appendChild(ingredientsDiv);
             recipeContent.appendChild(stepsDiv);
 
+            //Code to add event listener to recipe title show recipeContent when title is clicked on
             const recipeTitle = recipeDiv.querySelector(".recipeTitle");
             recipeTitle.addEventListener("click", () => {
                 recipeContent.classList.toggle("hidden");
                 recipeContent.style.backgroundColor = "rgb(255, 255, 255)";
             });
-
+             //Adding completed recipe list to wrapper div
             myRecipes.appendChild(recipeDiv);
-        }
+        } //Outer loop ends here
 
+        //Called to add functionality to newly created button
         deleteRecipes();
-
+        //Error Handling
     } catch (error) {
-        console.log(error, "Error fetching recipes");
+        alert("Could not fetch recipes", error.message);
     }
 }
 
+//Call getRecipes
 getRecipes();
 
+/*
+function to delete a recipe when the individual button attatched to the recipe is clicked,
+function is called after a new recipe is added
+*/
 async function deleteRecipes() {
     const parentDivs = document.getElementsByClassName("titleDelete");
 
+    //Loops throught all recipes adding the functionality of the delete button
     for (let i = 0; i < parentDivs.length; i++) {
         const parentDiv = parentDivs[i];
         const deleteButton = parentDiv.querySelector(".deleteButton");
 
         deleteButton.addEventListener('click', async () => {
+            //Deletes Div containing recipe
             const title = parentDiv.querySelector(".recipeTitle").textContent.trim();
             try {
+                //Deletes the recipe from the database
                 const response = await fetch(`/deleteRecipe/${encodeURIComponent(title)}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
+                //Response - Currently unused, future error hadnling could need
                 const deletedRecipe = await response.json();
+                //Retrieve new recipes and count for the user dash
                 await getRecipes();
                 await getRecipeCount();
+                //Error Handling
             } catch (error) {
                 alert("Could not delete Recipe: " + error.message);
             }
@@ -252,6 +287,7 @@ const minimiseRecipeButton = document.getElementById("minimiseRecipeButton");
 minimiseRecipeButton.style.opacity = "0.5";
 minimiseRecipeButton.style.pointerEvents = "none"; 
 
+//Code to change create recipe and close buttons appearal on user dash
 minimiseRecipeButton.addEventListener('click', () => {
     if (createRecipeWrapper) {
         createRecipeWrapper.style.opacity = "0.5";
@@ -271,9 +307,10 @@ createRecipeButton.addEventListener('click', () => {
     createRecipeButton.style.pointerEvents = "none";
     createRecipeWrapper.style.opacity = "1";
     createRecipeWrapper.style.pointerEvents = "auto";
+    //Div to be opened when create recipe is clicked
     createRecipeWrapper.innerHTML = `
         <div id="createRecipeForm">
-            <label for="title">Title</label>
+            <label for="title">Title (Must Be Unique)</label>
             <input type="text" id="title" name="title">
 
             <label for="description">Description</label>
@@ -335,19 +372,31 @@ createRecipeButton.addEventListener('click', () => {
     });
     document.getElementById('addRecipe').addEventListener('click', async () => {
         //Retrieving data from recipe div
+
         const title = document.getElementById('title').value;
-
         const description = document.getElementById('description').value;
-
         const serves = document.getElementById('serves').value;
-
+        //Validation for form
+        if (!title) {
+            alert("Please enter a title");
+            return;
+        }
+        if (!description) {
+            alert("Please enter a description");
+            return;
+        }
+        if (!serves || isNaN(serves)) {
+            alert("Please enter a valid number for serves");
+            return;
+        }
+        //Load the items form the display div to an array for sending to the database
         const ingredientsWrapper = document.getElementById('ingredientsWrapper');
-        
         const ingredients = Array.from(ingredientsWrapper.children).map(child => child.textContent);
-
+        //Load the items form the display div to an array for sending to the database
         const stepsWrapper = document.getElementById('stepsWrapper');
-
         const steps = Array.from(stepsWrapper.children).map(child => child.textContent);
+
+        //Username to be added to the recipe
         const username = localStorage.getItem('username');
     
         //JSON object cretaed from data
@@ -359,9 +408,7 @@ createRecipeButton.addEventListener('click', () => {
             steps: steps,
             username: username
         };
-
-        console.log(recipeData);
-
+        //Sends recipeData to server route which writes the recipe to the database
         try {
             const response = await fetch('/addRecipe', {
                 method: 'POST',
@@ -373,24 +420,29 @@ createRecipeButton.addEventListener('click', () => {
             });
     
             if (response.ok) {
-                console.log('Recipe added successfully!');
+                alert('Recipe added successfully!');
             } else {
-                console.error('Failed to add recipe.');
+                alert('Failed to add recipe. Please check inputs');
             }
+            //Error Handling
         } catch (error) {
-            console.error('Error:', error);
+            alert("Could not connect to MKP, please try again", error.message);
         }
 
+        //Code to delete the ingredients and steps visual list on clicking add recipe
         const ingredientElement = document.getElementById("ingredientsWrapper");
         const stepsElement = document.getElementById("stepsWrapper")
-
+        
+        //deletion of the temporary divs for displaying added steps and ingredients
         ingredientElement.style.visibility = "hidden";
         ingredientElement.style.height = "0px";
         stepsElement.style.visibility = "hidden";
         stepsElement.style.height = "0px";
 
+        //Called to load the new list of recipes after a new one has been added
         getRecipes();
 
+        //Clears all recipe fields on clicking add recipe
         const inputs = document.querySelectorAll('input, textarea');
         inputs.forEach(input => {
             input.value = "";
