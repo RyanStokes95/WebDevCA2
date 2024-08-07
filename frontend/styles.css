@@ -169,7 +169,7 @@ body{
     }
     
     #signInForm{
-        margin-top: 100px;
+        margin-top: 70px;
         display: flex;
         flex-direction: column;
         width: 300px;
@@ -221,7 +221,7 @@ body{
     border-radius: 27%;
     padding: 3px;
     margin-right: 40px;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 #logo{
@@ -581,12 +581,6 @@ body{
     }
 
     #home{
-        text-decoration: none;
-        color: rgb(112, 205, 146);
-        background-color: rgb(255, 255, 255);
-        border: 1.5px solid rgb(0, 0, 0);
-        border-radius: 27%;
-        padding: 3px;
         font-size: 17px;
     }
 
@@ -713,7 +707,7 @@ body{
         border: 1.5px solid rgb(0, 0, 0);
         border-radius: 27%;
         padding: 3px;
-        font-size: 17px;
+        font-size: 23px;
     }
 
     #registerBody {
